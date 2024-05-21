@@ -1,0 +1,18 @@
+﻿CREATE PROCEDURE [dbo].InsertIntoTeachers
+	@Login nvarchar(75), @Password nvarchar(75), @Name nvarchar(75), @Surname nvarchar(75), @DiplomaPhoto varbinary(max), @PassportPhoto varbinary(max), @FromWork varbinary(max), @EducationalEstablishment nvarchar(75), @Id int output
+AS
+begin
+insert into LoginsPasswords([Login], [Password]) values (@Login, @Password)
+declare @LoginPasswordId bigint; set @LoginPasswordId = SCOPE_IDENTITY();
+
+insert into Confirmations([DiplomaPhoto], [PassportPhoto], [ConfirmationFromPlaceOfWork]) values (@DiplomaPhoto, @PassportPhoto, @FromWork)
+declare @ConfirmationId int; set @ConfirmationId = SCOPE_IDENTITY();
+
+insert into Teachers ([Name], [Surname], [ConfirmationId], [IsConfirmed], [EducationalEstablishmentId]) values
+(@Name, @Surname, @ConfirmationId, 0, (select top 1 Id from EducationalEstablishments where [Name] = @EducationalEstablishment))
+declare @TeacherId int; set @TeacherId = SCOPE_IDENTITY();
+set @Id = @TeacherId;
+
+insert into TeachersAccounts([LoginPasswordId], [TeacherId]) values (@LoginPasswordId, @TeacherId)
+end
+RETURN 0

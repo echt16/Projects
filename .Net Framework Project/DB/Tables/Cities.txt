@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[Cities] (
+    [Id]        INT           IDENTITY (1, 1) NOT NULL,
+    [Name]      NVARCHAR (75) NOT NULL,
+    [CountryId] TINYINT       NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([CountryId]) REFERENCES [dbo].[Countries] ([Id]),
+    CHECK ([Name]<>'')
+);

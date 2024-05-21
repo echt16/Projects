@@ -1,0 +1,10 @@
+CREATE TABLE [dbo].[Confirmations] (
+    [Id]                          INT             IDENTITY (1, 1) NOT NULL,
+    [DiplomaPhoto]                VARBINARY (MAX) NOT NULL,
+    [PassportPhoto]               VARBINARY (MAX) NOT NULL,
+    [ConfirmationFromPlaceOfWork] VARBINARY (MAX) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CHECK ([DiplomaPhoto]<>0x00),
+    CHECK ([PassportPhoto]<>0x00),
+    CHECK ([ConfirmationFromPlaceOfWork]<>0x00)
+);

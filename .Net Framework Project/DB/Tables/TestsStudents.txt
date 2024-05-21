@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[TestsStudents] (
+    [Id]        BIGINT IDENTITY (1, 1) NOT NULL,
+    [StudentId] INT    NOT NULL,
+    [TestId]    BIGINT NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([StudentId]) REFERENCES [dbo].[Students] ([Id]),
+    FOREIGN KEY ([TestId]) REFERENCES [dbo].[Tests] ([Id])
+);

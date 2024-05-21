@@ -1,0 +1,3 @@
+﻿CREATE PROC [dbo].GetTestsForStudent @StudentId int
+	AS SELECT t.Id as TestId, t.[Name] as TestName, t.Deadline as TestDeadLine, t2.Name + ', ' + t2.Surname as TeacherName FROM Tests as t join TestsStudents as ts on t.Id = ts.TestId join Students as s on s.Id = ts.StudentId join Teachers as t2 on t2.Id = t.TeacherId
+	where s.Id = @StudentId and t.Id <> all(select Id from Tests where Deadline < GETDATE())

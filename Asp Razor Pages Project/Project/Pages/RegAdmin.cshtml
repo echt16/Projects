@@ -1,0 +1,44 @@
+﻿@page
+@model Project.Pages.RegAdminModel
+@{
+}
+<script>
+    function CheckForm() {
+        var isOk = true;
+
+        var n = document.getElementsByName('name')[0].value;
+        if (n == '' || n == null) {
+            isOk = false;
+        }
+
+        var n = document.getElementsByName('login')[0].value;
+        if (n == '' || n == null) {
+            isOk = false;
+        }
+
+        var n = document.getElementsByName('password')[0].value;
+        if (n == '' || n == null) {
+            isOk = false;
+        }
+
+        if (!isOk) {
+            alert('Wrong info!');
+        }
+        else {
+            var logins = '@string.Join('|', Model.context.Users.Select(i => i.Login))'.split('|');
+            if (logins.indexOf(document.getElementsByName('login')[0].value) != -1) {
+                isOk = false;
+                alert('This login already in DB');
+            }
+        }
+        return isOk;
+    }
+</script>
+<form class="formGrid" method="post" onsubmit="return CheckForm()">
+    <div class="oneRoomTitleText" style="grid-column-start: 1; grid-column-end: 3">Registrate new Admin:</div>
+    <span style="grid-column: 1">Name:</span><input style="grid-column: 2" name="name">
+    <span style="grid-column: 1">Login:</span><input style="grid-column: 2" name="login">
+    <span style="grid-column: 1">Password:</span><input style="grid-column: 2" name="password" type="password">
+    <br />
+    <button class="searchButton" style="grid-column-start: 1; grid-column-end: 3">Registrate</button>
+</form>

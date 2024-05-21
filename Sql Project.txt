@@ -1,0 +1,504 @@
+--variant 1
+create database TravelAgency
+use TravelAgency
+
+create table People
+(
+Id int not null identity primary key,
+[Name] nvarchar(100) not null check([Name] != ''),
+Surname nvarchar(100) not null check(Surname != ''),
+Patronymic nvarchar(100) not null check(Patronymic != ''),
+PhoneNumber nvarchar(100) not null check(PhoneNumber != ''),
+Email nvarchar(100) not null check(Email != '')
+)
+insert into People([Name], Surname, Patronymic, PhoneNumber, Email) values
+('name1', 'surname1', 'patronymic1', 'phonenumber1', 'email1'),
+('name2', 'surname2', 'patronymic2', 'phonenumber2', 'email2'),
+('name3', 'surname3', 'patronymic3', 'phonenumber3', 'email3'),
+('name4', 'surname4', 'patronymic4', 'phonenumber4', 'email4'),
+('name5', 'surname5', 'patronymic5', 'phonenumber5', 'email5'),
+('name6', 'surname6', 'patronymic6', 'phonenumber6', 'email6')
+
+
+create table Positions
+(
+Id int not null identity primary key,
+[Name] nvarchar(100) not null check([Name] != '') unique
+)
+insert into Positions values ('position1'),('position2'),('position3')
+
+create table Countries
+(
+Id int not null identity primary key,
+[Name] nvarchar(100) not null check([Name] != '') unique
+)
+insert into Countries values ('country1'),('country2'),('country3')
+
+create table Cities
+(
+Id int not null identity primary key,
+[Name] nvarchar(100) not null check([Name] != ''),
+CountryId int not null foreign key references Countries(Id)
+)
+insert into Cities values ('city1', 1), ('city2', 2), ('city3', 3)
+
+create table Workers
+(
+Id int not null identity primary key,
+PersonId int not null foreign key references People(Id),
+PositionId int not null foreign key references Positions(Id),
+ReceiptDate date not null check(ReceiptDate <= GetDate())
+)
+insert into Workers(PersonId, PositionId, ReceiptDate) values
+(1, 1, '01.01.2001'),
+(2, 2, '01.01.2002'),
+(3, 3, '01.01.2003')
+
+create table WorkersArchiv
+(
+Id int not null identity primary key,
+PersonId int not null foreign key references People(Id),
+PositionId int not null foreign key references Positions(Id),
+ReceiptDate date not null check(ReceiptDate <= GetDate())
+)
+
+create table CountriesWorkers
+(
+Id int not null identity primary key,
+WorkerId int not null foreign key references Workers(Id),
+CountryId int not null foreign key references Countries(Id)
+)
+insert into CountriesWorkers(WorkerId, CountryId) values
+(1,1),
+(2,2),
+(3,3)
+
+create table CountriesWorkersArchiv
+(
+Id int not null identity primary key,
+WorkerId int not null foreign key references WorkersArchiv(Id),
+CountryId int not null foreign key references Countries(Id)
+)
+
+create table TransformationModes
+(
+Id int not null identity primary key,
+[Name] nvarchar(100) not null check([Name] != '') unique
+)
+insert into TransformationModes values ('transformationmode1'), ('transformationmode2'),('transformationmode3')
+
+create table Tours
+(
+Id int not null identity primary key,
+[Name] nvarchar(100) not null check([Name] != ''),
+Price money not null check(Price >= 0),
+StartDate date not null default(GetDate()),
+EndDate date not null, check(EndDate > StartDate),
+TransformationModeId int not null foreign key references TransformationModes(Id),
+MaxAmountTourists int not null check(MaxAmountTourists >= 0)
+)
+insert into Tours([Name], Price, StartDate, EndDate, TransformationModeId, MaxAmountTourists) values
+('tour1', 1000, '01.01.2011', '01.05.2011', 1, 100),
+('tour2', 2000, '01.01.2012', '01.05.2012', 2, 200),
+('tour3', 3000, '01.01.2013', '01.05.2013', 3, 300),
+('tour4', 3000, '01.01.2024', '01.05.2024', 3, 300)
+
+create table ToursArchiv
+(
+Id int not null identity primary key,
+[Name] nvarchar(100) not null check([Name] != ''),
+Price money not null check(Price >= 0),
+StartDate date not null default(GetDate()),
+EndDate date not null, check(EndDate > StartDate),
+TransformationModeId int not null foreign key references TransformationModes(Id),
+MaxAmountTourists int not null check(MaxAmountTourists >= 0)
+)
+
+
+create table ToursCities
+(
+Id int not null identity primary key,
+TourId int not null foreign key references Tours(Id),
+CityId int not null foreign key references Cities(Id),
+[Date] date not null default(GetDate())
+)
+insert into ToursCities (TourId, CityId, [Date]) values
+(1,1,'01.01.2021'),
+(2,2,'01.01.2022'),
+(3,3,'01.01.2023')
+
+create table ToursCitiesArchiv
+(
+Id int not null identity primary key,
+TourId int not null foreign key references Tours(Id),
+CityId int not null foreign key references Cities(Id),
+[Date] date not null default(GetDate())
+)
+
+create table Options
+(
+Id int not null identity primary key,
+[Name] nvarchar(100) not null check([Name] != ''),
+Price money not null check(Price >= 0),
+[Image] nvarchar(max) not null check([Image] != '')
+)
+insert into Options([Name], Price, [Image]) values
+('option1', 100, 'image1'),
+('option2', 200, 'image2'),
+('option3', 300, 'image3')
+
+create table OptionsArchiv
+(
+Id int not null identity primary key,
+[Name] nvarchar(100) not null check([Name] != ''),
+Price money not null check(Price >= 0),
+[Image] nvarchar(max) not null check([Image] != '')
+)
+
+
+create table ToursOptions
+(
+Id int not null identity primary key,
+OptionId int not null foreign key references Options(Id),
+TourId int not null foreign key references Tours(Id),
+Amount int not null check(Amount >= 0)
+)
+insert into ToursOptions (OptionId, TourId, Amount) values
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3)
+
+create table ToursOptionsArchiv
+(
+Id int not null identity primary key,
+OptionId int not null foreign key references OptionsArchiv(Id),
+TourId int not null foreign key references ToursArchiv(Id),
+Amount int not null check(Amount >= 0)
+)
+
+create table Hotels
+(
+Id int not null identity primary key,
+[Name] nvarchar(100) not null check([Name] != '') unique,
+CityId int not null foreign key references Cities(Id),
+[Image] nvarchar(max) not null check([Image] != '')
+)
+insert into Hotels([Name], CityId, [Image]) values
+('hotel1', 1, 'image1'),
+('hotel2', 2, 'image2'),
+('hotel3', 3, 'image3')
+
+create table HotelsArchiv
+(
+Id int not null identity primary key,
+[Name] nvarchar(100) not null check([Name] != '') unique,
+CityId int not null foreign key references Cities(Id),
+[Image] nvarchar(max) not null check([Image] != '')
+)
+
+create table ToursHotels
+(
+Id int not null identity primary key,
+HotelId int not null foreign key references Hotels(Id),
+TourId int not null foreign key references Tours(Id)
+)
+insert into ToursHotels(HotelId, TourId) values
+(1,1), (2,2), (3,3)
+
+create table ToursHotelsArchiv
+(
+Id int not null identity primary key,
+HotelId int not null foreign key references HotelsArchiv(Id),
+TourId int not null foreign key references ToursArchiv(Id)
+)
+
+create table Clients
+(
+Id int not null identity primary key,
+PersonId int not null foreign key references People(Id),
+BirthDay date not null check(BirthDay < GetDate())
+)
+insert into Clients (PersonId, BirthDay) values
+(4,'01.01.1994'),
+(5,'01.01.1995'),
+(6,'01.01.1996')
+
+create table ClientsArchiv
+(
+Id int not null identity primary key,
+PersonId int not null foreign key references People(Id),
+BirthDay date not null check(BirthDay < GetDate())
+)
+
+create table ToursWorkers
+(
+Id int not null identity primary key,
+TourId int not null foreign key references Tours(Id),
+WorkerId int not null foreign key references Workers(Id),
+)
+insert into ToursWorkers(TourId, WorkerId) values(1,1), (2,2), (3,3)
+
+create table ToursWorkersArchiv
+(
+Id int not null identity primary key,
+TourId int not null foreign key references ToursArchiv(Id),
+WorkerId int not null foreign key references WorkersArchiv(Id),
+)
+
+create table ToursClients
+(
+Id int not null identity primary key,
+TourId int not null foreign key references Tours(Id),
+ClientId int not null foreign key references Clients(Id),
+IsPaid bit not null default(0),
+IsSure bit not null default(0)
+)
+insert into ToursClients(TourId, ClientId, IsSure, IsPaid) values
+(1,1,0,0),
+(2,2,1,0),
+(3,3,1,1)
+
+
+create table ToursClientsArchiv
+(
+Id int not null identity primary key,
+TourId int not null foreign key references ToursArchiv(Id),
+ClientId int not null foreign key references ClientsArchiv(Id),
+IsPaid bit not null default(0),
+IsSure bit not null default(0)
+)
+--1)
+go
+create proc GetCurrentTours
+as
+begin
+select t.[Name] as 'Name', t.Price as 'Price', m.[Name] as 'Mode of Transformation', t.StartDate as 'Start', t.EndDate as 'End' from Tours as t
+join TransformationModes as m on m.Id = t.TransformationModeId
+where t.StartDate >= GetDate()
+end
+
+exec GetCurrentTours
+--2)
+go
+create proc GetToursByDate @Date1 date, @Date2 date
+as
+begin
+if(@Date1 > @Date2)
+begin
+select t.[Name] as 'Name', t.Price as 'Price', m.[Name] as 'Mode of Transformation', t.StartDate as 'Start', t.EndDate as 'End' from Tours as t
+join TransformationModes as m on m.Id = t.TransformationModeId
+where t.StartDate > @Date2 and t.EndDate < @Date1
+end
+else
+begin
+select t.[Name] as 'Name', t.Price as 'Price', m.[Name] as 'Mode of Transformation', t.StartDate as 'Start', t.EndDate as 'End' from Tours as t
+join TransformationModes as m on m.Id = t.TransformationModeId
+where t.StartDate > @Date1 and t.EndDate < @Date2
+end
+end
+
+exec GetToursByDate '01.01.2000', '01.01.2020'
+--3)
+go
+create proc GetToursByCountry @c nvarchar(100)
+as
+begin
+select t.[Name] as 'Name', t.Price as 'Price', m.[Name] as 'Mode of Transformation', t.StartDate as 'Start', t.EndDate as 'End' from Tours as t
+join TransformationModes as m on m.Id = t.TransformationModeId
+join ToursCities as tc on t.Id =tc.TourId
+join Cities as c on c.Id = tc.CityId
+join Countries as coun on coun.Id = c.CountryId
+where coun.[Name] = @c
+end
+
+exec GetToursByCountry 'country1'
+--4)
+go
+create proc TopCountryByTours
+as
+begin
+with AllTours as
+(
+select * from Tours
+union
+select * from ToursArchiv
+)
+select coun.[Name] from AllTours as t
+join ToursCities as tc on tc.TourId = t.Id
+join Cities as c on tc.CityId = c.Id
+join Countries as coun on coun.Id = c.CountryId
+group by coun.[Name]
+having count(t.Id) = (select top 1 count(t1.Id) from AllTours as t1
+join ToursCities as tc1 on tc1.TourId = t1.Id
+join Cities as c1 on tc1.CityId = c1.Id
+join Countries as coun1 on coun1.Id = c1.CountryId
+group by coun1.[Name] order by count(t1.Id) desc)
+end
+
+exec TopCountryByTours
+--5)
+go
+create proc TopTourByCount
+as
+begin
+select t.[Name] as 'Name', t.Price as 'Price', m.[Name] as 'Mode of Transformation', t.StartDate as 'Start', t.EndDate as 'End' from Tours as t
+join TransformationModes as m on m.Id = t.TransformationModeId
+where t.Id = any(select t1.Id from Tours as t1 join ToursClients as tc1 on t1.Id = tc1.TourId join Clients as c1 on c1.Id = tc1.ClientId group by t1.Id having count(c1.Id) = (select top 1 count(c2.Id) from Tours as t2 join ToursClients as tc2 on tc2.TourId = t2.Id join Clients as c2 on c2.Id = tc2.ClientId group by t2.Id order by count(c2.Id) desc))
+end
+
+exec TopTourByCount
+--6)
+go
+create proc TopArchivTourByCount
+as
+begin
+select t.[Name] as 'Name', t.Price as 'Price', m.[Name] as 'Mode of Transformation', t.StartDate as 'Start', t.EndDate as 'End' from ToursArchiv as t
+join TransformationModes as m on m.Id = t.TransformationModeId
+where t.Id = any(select t1.Id from ToursArchiv as t1 join ToursClientsArchiv as tc1 on t1.Id = tc1.TourId join ClientsArchiv as c1 on c1.Id = tc1.ClientId group by t1.Id having count(c1.Id) = (select top 1 count(c2.Id) from ToursArchiv as t2 join ToursClientsArchiv as tc2 on tc2.TourId = t2.Id join ClientsArchiv as c2 on c2.Id = tc2.ClientId group by t2.Id order by count(c2.Id) desc))
+end
+
+exec TopArchivTourByCount
+--7)
+go
+create proc TopTourByMinCount
+as
+begin
+select t.[Name] as 'Name', t.Price as 'Price', m.[Name] as 'Mode of Transformation', t.StartDate as 'Start', t.EndDate as 'End' from Tours as t
+join TransformationModes as m on m.Id = t.TransformationModeId
+where t.Id = any(select t1.Id from Tours as t1 join ToursClients as tc1 on t1.Id = tc1.TourId join Clients as c1 on c1.Id = tc1.ClientId group by t1.Id having count(c1.Id) = (select top 1 count(c2.Id) from Tours as t2 join ToursClients as tc2 on tc2.TourId = t2.Id join Clients as c2 on c2.Id = tc2.ClientId group by t2.Id order by count(c2.Id) asc))
+end
+
+exec TopTourByMinCount
+--8)
+go
+create proc TourByClient @Name nvarchar(100), @Surname nvarchar(100), @Patronymic nvarchar(100)
+as
+begin
+select t.[Name] as 'Tour' from Tours as t
+join ToursClients as tc on tc.TourId = t.Id
+join Clients as c on c.Id = tc.ClientId
+join People as p on c.PersonId = p.Id
+where p.[Name] = @Name and p.Surname = @Surname and p.Patronymic = @Patronymic
+end
+
+exec TourByClient 'name4', 'surname4', 'patronymic4'
+--9)
+go
+create proc IsNowInTour @Name nvarchar(100), @Surname nvarchar(100), @Patronymic nvarchar(100),
+@res bit
+as
+begin
+if(select t.StartDate from Tours as t
+join ToursClients as tc on tc.TourId = t.Id
+join Clients as c on c.Id = tc.ClientId
+join People as p on c.PersonId = p.Id
+where p.[Name] = @Name and p.Surname = @Surname and p.Patronymic = @Patronymic) < GetDate() and
+(select t.EndDate from Tours as t
+join ToursClients as tc on tc.TourId = t.Id
+join Clients as c on c.Id = tc.ClientId
+join People as p on c.PersonId = p.Id
+where p.[Name] = @Name and p.Surname = @Surname and p.Patronymic = @Patronymic) > GetDate()
+set @res = 1
+else
+set @res = 0
+end
+--10)
+go
+create proc WhereNow @Name nvarchar(100), @Surname nvarchar(100), @Patronymic nvarchar(100)
+as
+begin
+declare @r bit 
+exec IsNowInTour @Name, @Surname,@Patronymic, @r
+if @r = 1
+select cit.[Name], coun.[Name] from Tours as t
+join ToursClients as tc on tc.TourId = t.Id
+join Clients as c on c.Id = tc.ClientId
+join People as p on c.PersonId = p.Id
+join ToursCities as tc1 on t.Id = tc1.TourId
+join Cities as cit on tc1.CityId = cit.Id
+join Countries as coun on coun.Id = cit.CountryId
+where p.[Name] = @Name and p.Surname = @Surname and p.Patronymic = @Patronymic
+else
+print 'Client has not tour!'
+end
+--11)
+go
+create proc TopClientByTour
+as
+begin
+select p.[Name], p.Surname from People as p
+where p.Id = any(select p.Id from Tours as t
+join ToursClients as tc on tc.TourId = t.Id
+join Clients as c on c.Id = tc.ClientId
+join People as p on c.PersonId = p.Id 
+group by p.Id
+having count(t.Id) = (select top 1 count(t1.Id) from Tours as t1
+join ToursClients as tc1 on tc1.TourId = t1.Id
+join Clients as c1 on c1.Id = tc1.ClientId
+join People as p1 on c1.PersonId = p1.Id 
+group by p1.Id order by count(t1.Id) desc))
+end 
+
+exec TopClientByTour
+--12)
+go
+create proc ToursByMode @Mode nvarchar(100)
+as
+select t.[Name] as 'Name', t.Price as 'Price', m.[Name] as 'Mode of Transformation', t.StartDate as 'Start', t.EndDate as 'End' from Tours as t
+join TransformationModes as m on m.Id = t.TransformationModeId
+where m.[Name] = @Mode
+--13)
+go
+create trigger Insert_In_Clients
+on Clients
+instead of insert
+as
+begin
+if exists(select p.Id from People as p join Clients as c on c.PersonId = p.Id
+where p.[Name] = (select p1.[Name] from People as p1 join inserted as c1 on c1.PersonId = p1.Id) and
+p.Surname = (select p1.Surname from People as p1 join inserted as c1 on c1.PersonId = p1.Id) and
+p.Patronymic = (select p1.Patronymic from People as p1 join inserted as c1 on c1.PersonId = p1.Id))
+print 'Client already exists'
+else
+insert into Clients ([PersonId], [BirthDay]) values
+((select PersonId from inserted), (select BirthDay from inserted))
+end
+--14)
+go 
+create trigger Delete_Tours
+on Tours
+after delete
+as
+begin
+insert into ToursArchiv([Name], [Price], [StartDate], [EndDate], [TransformationModeId], [MaxAmountTourists]) values
+((select [Name] from deleted), (select [Price] from deleted),(select [StartDate] from deleted),(select [EndDate] from deleted),(select [TransformationModeId] from deleted),(select [MaxAmountTourists] from deleted))
+end
+--15)
+go
+create proc TopHotel
+as
+select h.[Name] from Hotels as h
+join ToursHotels as th on h.Id = th.HotelId
+join Tours as t on t.Id = th.TourId
+join ToursClients as tc on tc.TourId = t.Id
+join Clients as c on c.Id = tc.ClientId
+group by h.[Name]
+having count(c.Id) = (select top 1 count(c1.Id) from Hotels as h1
+join ToursHotels as th1 on h1.Id = th1.HotelId
+join Tours as t1 on t1.Id = th1.TourId
+join ToursClients as tc1 on tc1.TourId = t1.Id
+join Clients as c1 on c1.Id = tc1.ClientId
+group by h1.[Name] order by count(c1.Id) desc)
+--16)
+go
+create trigger ToursClientInsert
+on ToursClients
+instead of insert
+as
+begin
+if(select count(c.Id) from ToursClients as tc join Clients as c on c.Id = tc.ClientId where tc.TourId = (select TourId from inserted)) = (select MaxAmountTourists from Tours where Id = (select TourId from inserted))
+print 'Максимальное количество клиентов!'
+else
+insert into ToursClients ([ClientId], [IsPaid], [IsSure], [TourId]) values
+((select ClientId from inserted), (select IsPaid from inserted), (select IsSure from inserted), (select TourId from inserted))
+end

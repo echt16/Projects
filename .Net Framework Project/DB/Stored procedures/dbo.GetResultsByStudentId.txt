@@ -1,0 +1,4 @@
+﻿CREATE PROCEDURE [dbo].GetResultsByStudentId @StudentId int
+AS
+	SELECT t.Id as TestId, t.[Name] as TestName, r.Score, t.MaxScore, r.[Time], r.TimeSpan, t2.Name + ' ' + t2.Surname as TeacherName, t.IsScoreVisible from Tests as t join Results as r on r.TestId = t.Id join Teachers as t2 on t2.Id = t.TeacherId where r.StudentId = @StudentId 
+RETURN 0

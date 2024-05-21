@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].ExistsLogin
+	@Login nvarchar(75), @Result bit output
+AS
+begin
+	if (select count(*) from LoginsPasswords where [Login] = @Login) > 0
+	set @Result = 1
+	else
+	set @Result = 0
+end
+RETURN 0

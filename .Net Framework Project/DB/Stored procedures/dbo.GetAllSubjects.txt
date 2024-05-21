@@ -1,0 +1,4 @@
+﻿CREATE PROCEDURE [dbo].GetAllSubjects
+AS
+	SELECT Id as SubjectId, [Name] as SubjectName from Subjects
+RETURN 0

@@ -1,0 +1,12 @@
+CREATE TABLE [dbo].[Results] (
+    [Id]        BIGINT   IDENTITY (1, 1) NOT NULL,
+    [Score]     TINYINT  NOT NULL,
+    [Time]      DATETIME DEFAULT (getdate()) NOT NULL,
+    [TimeSpan]  TIME (7) NOT NULL,
+    [StudentId] INT      NOT NULL,
+    [TestId]    BIGINT   NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([TestId]) REFERENCES [dbo].[Tests] ([Id]),
+    FOREIGN KEY ([StudentId]) REFERENCES [dbo].[Students] ([Id]),
+    CHECK ([Score]>(0))
+);

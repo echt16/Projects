@@ -1,0 +1,4 @@
+﻿CREATE PROCEDURE [dbo].SetConfirmation @TeacherId int
+AS
+update Teachers set IsConfirmed = 1 where @TeacherId = Id
+RETURN 0

@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Project</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Project.styles.css" asp-append-version="true" />
+</head>
+<body style="padding: 0">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="padding: 0">
+            <span class="title">
+                <a style="text-decoration: none;" asp-page="/Index" class="title">Quests</a>
+            </span>
+            <script>
+
+            </script>
+            <div class="container">
+                <div>
+                    <script>
+                        function DelUser() {
+                            var d = new Date(Date.now() - 86400e3).toUTCString();
+                            document.cookie = "user=" + '' + "; expires=" + d;
+                        }
+                    </script>
+                    <ul class="navbar-nav">
+                        <li class="upperPage">
+                            <a asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="upperPage">
+                            <a asp-area="" asp-page="/Rooms">Rooms</a>
+                        </li>
+                        <li class="upperPage">
+                            <a asp-area="" asp-page="/Reservation">Reservation</a>
+                        </li>
+                        <li class="upperPage">
+                            <a asp-area="" asp-page="/Control">Control</a>
+                        </li>
+                        <li class="upperPage">
+                            <a asp-area="" asp-page="/Login" onclick="DelUser()">Exit</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div style="margin: 0; padding: 0">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

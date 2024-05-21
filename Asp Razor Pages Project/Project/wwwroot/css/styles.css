@@ -1,0 +1,179 @@
+﻿.upperPage
+{
+    margin: 0;
+    padding: 15px;
+    font-size: x-large;
+    transition-duration: 0.5s;
+}
+.upperPage:hover
+{
+    background-color: rgb(50, 0, 143);
+}
+.upperPage > a 
+{
+    color: rgb(50, 0, 143);
+    text-decoration: none;
+    transition-duration: 0.5s;
+}
+.upperPage:hover > a 
+{
+    color: rgb(33, 255, 8);
+}
+.title 
+{
+    font-size: xx-large;
+    color: rgb(50, 0, 143);
+    margin-left: 50px;
+    text-shadow: 2px 2px 2px rgb(33, 255, 8);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.roomsDiv
+{
+    padding: 0 100px 0 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.roomDiv
+{
+    width: calc(100% / 3 - 20px);
+    height: auto;
+    margin: 10px;
+    padding: 10px;
+    display: block;
+    border: solid 1px black;
+    transition-duration: 1s;
+    border-radius: 10px;
+}
+.roomDiv:hover
+{
+    background-color: rgb(216, 255, 255);
+}
+.roomDiv > img
+{
+    width: 100%;
+    height: auto;
+}
+.roomTitle
+{
+    font-weight: bold;
+    font-size: large;
+}
+.roomInfo 
+{
+    font-size: small;
+    color: dimgray;
+    overflow: hidden;
+}
+.roomRef
+{
+    display: block;
+    width: min-content;
+    margin-top: 10px;
+    padding: 10px;
+    border: solid 1px rgb(50, 0, 143);
+    color: rgb(50, 0, 143);
+    text-decoration: none;
+    transition-duration: 0.5s;
+    background-color: white;
+}
+.roomRef:hover
+{
+    color: rgb(33, 255, 8);
+    background-color: rgb(50, 0, 143);
+}
+.oneRoomTitle 
+{
+    height: 300px;
+    background-size: cover;
+    background-position-y: center;
+    padding: 100px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 20px rgb(50, 0, 143);
+    background-blend-mode: luminosity;
+    background-color: rgb(22, 0, 66);
+}
+.oneRoomGrid
+{
+    grid-template-columns: 1fr 3fr 2fr 2fr 1fr;
+    display: grid;
+}
+.oneRoomImgs
+{
+    grid-column: 2;
+    padding: 20px;
+}
+.oneRoomImages 
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.oneRoomImages > img
+{
+    width: calc(50% - 10px);
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.oneRoomDesc 
+{
+    grid-column: 3;
+    padding: 20px;
+    font-size: larger;
+    color: rgb(50, 0, 143);
+}
+.oneRoomTitleText
+{
+    font-size: x-large;
+    font-weight: bold;
+    display: block;
+    color: black;
+}
+.oneRoomInfo 
+{
+    grid-column: 4;
+    padding: 20px;
+    font-size: larger;
+    color: rgb(50, 0, 143);
+}
+.oneRoomAboutDiv
+{
+    text-align: center;
+    color: rgb(50, 0, 143);
+    font-weight: bold;
+    font-size: large;
+}
+.searchButton
+{
+    background-color: white;
+    color: rgb(50, 0, 143);
+    transition-duration: 0.5s;
+}
+.searchButton:hover
+{
+    background-color: rgb(50, 0, 143);
+    color: rgb(33, 255, 8);
+}
+
+.formGrid 
+{
+    display: grid;
+    margin: 20px 0 20px 100px;
+    padding: 20px;
+    grid-template-columns: 150px 300px;
+    width: 490px;
+    border: rgb(50, 0, 143) 1px solid;
+    border-radius: 20px;
+    background-color: rgb(248, 255, 244);
+    float: left;
+}
+.formGrid > span
+{
+    color: rgb(50, 0, 143);
+}

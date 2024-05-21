@@ -1,0 +1,85 @@
+﻿@page
+@model Project.Pages.ControlModel
+@{
+}
+<script name="Scripts">
+    function GetCookieValue(key) {
+        for (var i = 0; i < document.cookie.split('; ').length; i++) {
+            var t = document.cookie.split('; ')[i].split('=');
+            if (t[0] == key) {
+                return t[1];
+            }
+        }
+        return null;
+    }
+    if (GetCookieValue('user') == null) {
+        location.href = '/Login';
+    }
+    else {
+        var role = GetCookieValue('user').split('^')[3];
+        if (role != 'Admin') {
+            window.history.back();
+        }
+    }
+</script>
+
+<style>
+    main{
+        margin: 0 170px;
+    }
+    .upperPage {
+        margin: 0;
+        padding: 15px;
+        font-size: x-large;
+        transition-duration: 0.5s;
+    }
+
+        .upperPage:hover {
+            background-color: rgb(50, 0, 143);
+        }
+
+        .upperPage > a {
+            color: rgb(50, 0, 143);
+            text-decoration: none;
+            transition-duration: 0.5s;
+        }
+
+        .upperPage:hover > a {
+            color: rgb(33, 255, 8);
+        }
+
+    .title {
+        font-size: xx-large;
+        color: rgb(50, 0, 143);
+        margin-left: 50px;
+        text-shadow: 2px 2px 2px rgb(33, 255, 8);
+        font-weight: bold;
+    }
+</style>
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="padding: 0">
+    <span class="title">
+        Control
+    </span>
+    <div class="container">
+        <div>
+            <ul class="navbar-nav">
+                <li class="upperPage">
+                    <a asp-area="" asp-page="/ChangeRooms">ChangeRooms</a>
+                </li>
+                <li class="upperPage">
+                    <a asp-area="" asp-page="/ChangeCompanies">ChangeCompanies</a>
+                </li>
+                <li class="upperPage">
+                    <a asp-area="" asp-page="/ChangeNumbers">ChangeNumbers</a>
+                </li>
+                <li class="upperPage">
+                    <a asp-area="" asp-page="/ChangePhotos">ChangePhotos</a>
+                </li>
+                <li class="upperPage">
+                    <a asp-area="" asp-page="/RegAdmin">NewAdmin</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

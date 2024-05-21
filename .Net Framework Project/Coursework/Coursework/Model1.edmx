@@ -1,0 +1,1671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TestApplicationDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrators">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdministratorsAccounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdministratorId" Type="int" Nullable="false" />
+          <Property Name="LoginPasswordId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="CountryId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Confirmations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiplomaPhoto" Type="varbinary(max)" Nullable="false" />
+          <Property Name="PassportPhoto" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ConfirmationFromPlaceOfWork" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EducationalEstablishments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoginsPasswords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PossibleAnswers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="IsRight" Type="bit" Nullable="false" />
+          <Property Name="QuestionId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="TestId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Results">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Score" Type="tinyint" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="TimeSpan" Type="time" Precision="7" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="TestId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="GroupId" Type="int" />
+        </EntityType>
+        <EntityType Name="StudentsAccounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="LoginPasswordId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subjects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="IsConfirmed" Type="bit" Nullable="false" />
+          <Property Name="EducationalEstablishmentId" Type="int" />
+          <Property Name="ConfirmationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeachersAccounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+          <Property Name="LoginPasswordId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="Deadline" Type="datetime" />
+          <Property Name="MaxScore" Type="tinyint" Nullable="false" />
+          <Property Name="IsScoreVisible" Type="bit" Nullable="false" />
+          <Property Name="AreAnswersVisible" Type="bit" Nullable="false" />
+          <Property Name="OnePlaythrough" Type="bit" Nullable="false" />
+          <Property Name="SubjectId" Type="smallint" Nullable="false" />
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestsGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestId" Type="bigint" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestsStudents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="TestId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Administr__Admin__25518C17">
+          <End Role="Administrators" Type="Self.Administrators" Multiplicity="1" />
+          <End Role="AdministratorsAccounts" Type="Self.AdministratorsAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrators">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdministratorsAccounts">
+              <PropertyRef Name="AdministratorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Administr__Login__2645B050">
+          <End Role="LoginsPasswords" Type="Self.LoginsPasswords" Multiplicity="1" />
+          <End Role="AdministratorsAccounts" Type="Self.AdministratorsAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginsPasswords">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdministratorsAccounts">
+              <PropertyRef Name="LoginPasswordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cities__CountryI__286302EC">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Education__CityI__79FD19BE">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="EducationalEstablishments" Type="Self.EducationalEstablishments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EducationalEstablishments">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Groups__TeacherI__373B3228">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PossibleA__Quest__66603565">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+          <End Role="PossibleAnswers" Type="Self.PossibleAnswers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PossibleAnswers">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__TestI__178D7CA5">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Results__Student__308E3499">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Results__TestId__1881A0DE">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__GroupI__4D5F7D71">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentsA__Login__339FAB6E">
+          <End Role="LoginsPasswords" Type="Self.LoginsPasswords" Multiplicity="1" />
+          <End Role="StudentsAccounts" Type="Self.StudentsAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginsPasswords">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentsAccounts">
+              <PropertyRef Name="LoginPasswordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentsA__Stude__32AB8735">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="StudentsAccounts" Type="Self.StudentsAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentsAccounts">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teachers__Confir__5165187F">
+          <End Role="Confirmations" Type="Self.Confirmations" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Confirmations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="ConfirmationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teachers__Educat__634EBE90">
+          <End Role="EducationalEstablishments" Type="Self.EducationalEstablishments" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EducationalEstablishments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="EducationalEstablishmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TeachersA__Login__2DE6D218">
+          <End Role="LoginsPasswords" Type="Self.LoginsPasswords" Multiplicity="1" />
+          <End Role="TeachersAccounts" Type="Self.TeachersAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginsPasswords">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeachersAccounts">
+              <PropertyRef Name="LoginPasswordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TeachersA__Teach__2CF2ADDF">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="TeachersAccounts" Type="Self.TeachersAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeachersAccounts">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tests__SubjectId__15A53433">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+          <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tests">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tests__TeacherId__1699586C">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tests">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestsGrou__Group__17036CC0">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="TestsGroups" Type="Self.TestsGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestsGroups">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestsGrou__TestI__14B10FFA">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="TestsGroups" Type="Self.TestsGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestsGroups">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestsStud__Stude__02FC7413">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="TestsStudents" Type="Self.TestsStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestsStudents">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestsStud__TestI__13BCEBC1">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="TestsStudents" Type="Self.TestsStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestsStudents">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CheckAuthorization" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Type" Type="tinyint" Mode="In" />
+          <Parameter Name="Result" Type="bit" Mode="InOut" />
+          <Parameter Name="Id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="DeleteStudentAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ExistsLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login" Type="nvarchar" Mode="In" />
+          <Parameter Name="Result" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="GetAllAvailibleTests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllAvailibleTestsBySubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubjectId" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="GetAllSubjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetConfirmation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TeacherId" Type="int" Mode="In" />
+          <Parameter Name="Diploma" Type="varbinary(max)" Mode="InOut" />
+          <Parameter Name="Passport" Type="varbinary(max)" Mode="InOut" />
+          <Parameter Name="FromWork" Type="varbinary(max)" Mode="InOut" />
+        </Function>
+        <Function Name="GetInfoAboutStudentProfile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetPossibleAnswersForQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="QuestionId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetQuestionsForTest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TestId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetResultsByStudentId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetTestsByRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Request" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetTestsForGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetTestsForStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertIntoStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Surname" Type="nvarchar" Mode="In" />
+          <Parameter Name="Id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="InsertIntoTeachers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Surname" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiplomaPhoto" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="PassportPhoto" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="FromWork" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="EducationalEstablishment" Type="nvarchar" Mode="In" />
+          <Parameter Name="Id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="SetConfirmation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TeacherId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SetTestToGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TestId" Type="bigint" Mode="In" />
+          <Parameter Name="GroupName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SetTestToStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login" Type="nvarchar" Mode="In" />
+          <Parameter Name="TestId" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище TestApplicationDBModelContainer">
+          <EntitySet Name="Administrators" EntityType="Self.Administrators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdministratorsAccounts" EntityType="Self.AdministratorsAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Confirmations" EntityType="Self.Confirmations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EducationalEstablishments" EntityType="Self.EducationalEstablishments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginsPasswords" EntityType="Self.LoginsPasswords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PossibleAnswers" EntityType="Self.PossibleAnswers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentsAccounts" EntityType="Self.StudentsAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeachersAccounts" EntityType="Self.TeachersAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tests" EntityType="Self.Tests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestsGroups" EntityType="Self.TestsGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestsStudents" EntityType="Self.TestsStudents" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Administr__Admin__25518C17" Association="Self.FK__Administr__Admin__25518C17">
+            <End Role="Administrators" EntitySet="Administrators" />
+            <End Role="AdministratorsAccounts" EntitySet="AdministratorsAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Administr__Login__2645B050" Association="Self.FK__Administr__Login__2645B050">
+            <End Role="LoginsPasswords" EntitySet="LoginsPasswords" />
+            <End Role="AdministratorsAccounts" EntitySet="AdministratorsAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cities__CountryI__286302EC" Association="Self.FK__Cities__CountryI__286302EC">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Education__CityI__79FD19BE" Association="Self.FK__Education__CityI__79FD19BE">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="EducationalEstablishments" EntitySet="EducationalEstablishments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Groups__TeacherI__373B3228" Association="Self.FK__Groups__TeacherI__373B3228">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PossibleA__Quest__66603565" Association="Self.FK__PossibleA__Quest__66603565">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="PossibleAnswers" EntitySet="PossibleAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__TestI__178D7CA5" Association="Self.FK__Questions__TestI__178D7CA5">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Results__Student__308E3499" Association="Self.FK__Results__Student__308E3499">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Results__TestId__1881A0DE" Association="Self.FK__Results__TestId__1881A0DE">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__GroupI__4D5F7D71" Association="Self.FK__Students__GroupI__4D5F7D71">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentsA__Login__339FAB6E" Association="Self.FK__StudentsA__Login__339FAB6E">
+            <End Role="LoginsPasswords" EntitySet="LoginsPasswords" />
+            <End Role="StudentsAccounts" EntitySet="StudentsAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentsA__Stude__32AB8735" Association="Self.FK__StudentsA__Stude__32AB8735">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="StudentsAccounts" EntitySet="StudentsAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teachers__Confir__5165187F" Association="Self.FK__Teachers__Confir__5165187F">
+            <End Role="Confirmations" EntitySet="Confirmations" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teachers__Educat__634EBE90" Association="Self.FK__Teachers__Educat__634EBE90">
+            <End Role="EducationalEstablishments" EntitySet="EducationalEstablishments" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TeachersA__Login__2DE6D218" Association="Self.FK__TeachersA__Login__2DE6D218">
+            <End Role="LoginsPasswords" EntitySet="LoginsPasswords" />
+            <End Role="TeachersAccounts" EntitySet="TeachersAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TeachersA__Teach__2CF2ADDF" Association="Self.FK__TeachersA__Teach__2CF2ADDF">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="TeachersAccounts" EntitySet="TeachersAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tests__SubjectId__15A53433" Association="Self.FK__Tests__SubjectId__15A53433">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Tests" EntitySet="Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tests__TeacherId__1699586C" Association="Self.FK__Tests__TeacherId__1699586C">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Tests" EntitySet="Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestsGrou__Group__17036CC0" Association="Self.FK__TestsGrou__Group__17036CC0">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="TestsGroups" EntitySet="TestsGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestsGrou__TestI__14B10FFA" Association="Self.FK__TestsGrou__TestI__14B10FFA">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="TestsGroups" EntitySet="TestsGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestsStud__Stude__02FC7413" Association="Self.FK__TestsStud__Stude__02FC7413">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="TestsStudents" EntitySet="TestsStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestsStud__TestI__13BCEBC1" Association="Self.FK__TestsStud__TestI__13BCEBC1">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="TestsStudents" EntitySet="TestsStudents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestApplicationDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AdministratorsAccounts" Relationship="Self.FK__Administr__Admin__25518C17" FromRole="Administrators" ToRole="AdministratorsAccounts" />
+        </EntityType>
+        <EntityType Name="AdministratorsAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdministratorId" Type="Int32" Nullable="false" />
+          <Property Name="LoginPasswordId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Administrator" Relationship="Self.FK__Administr__Admin__25518C17" FromRole="AdministratorsAccounts" ToRole="Administrators" />
+          <NavigationProperty Name="LoginsPassword" Relationship="Self.FK__Administr__Login__2645B050" FromRole="AdministratorsAccounts" ToRole="LoginsPasswords" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountryId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="Self.FK__Cities__CountryI__286302EC" FromRole="Cities" ToRole="Countries" />
+          <NavigationProperty Name="EducationalEstablishments" Relationship="Self.FK__Education__CityI__79FD19BE" FromRole="Cities" ToRole="EducationalEstablishments" />
+        </EntityType>
+        <EntityType Name="Confirmation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiplomaPhoto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="PassportPhoto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ConfirmationFromPlaceOfWork" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK__Teachers__Confir__5165187F" FromRole="Confirmations" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK__Cities__CountryI__286302EC" FromRole="Countries" ToRole="Cities" />
+        </EntityType>
+        <EntityType Name="EducationalEstablishment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Education__CityI__79FD19BE" FromRole="EducationalEstablishments" ToRole="Cities" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK__Teachers__Educat__634EBE90" FromRole="EducationalEstablishments" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__Groups__TeacherI__373B3228" FromRole="Groups" ToRole="Teachers" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Students__GroupI__4D5F7D71" FromRole="Groups" ToRole="Students" />
+          <NavigationProperty Name="TestsGroups" Relationship="Self.FK__TestsGrou__Group__17036CC0" FromRole="Groups" ToRole="TestsGroups" />
+        </EntityType>
+        <EntityType Name="LoginsPassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AdministratorsAccounts" Relationship="Self.FK__Administr__Login__2645B050" FromRole="LoginsPasswords" ToRole="AdministratorsAccounts" />
+          <NavigationProperty Name="StudentsAccounts" Relationship="Self.FK__StudentsA__Login__339FAB6E" FromRole="LoginsPasswords" ToRole="StudentsAccounts" />
+          <NavigationProperty Name="TeachersAccounts" Relationship="Self.FK__TeachersA__Login__2DE6D218" FromRole="LoginsPasswords" ToRole="TeachersAccounts" />
+        </EntityType>
+        <EntityType Name="PossibleAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsRight" Type="Boolean" Nullable="false" />
+          <Property Name="QuestionId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="Self.FK__PossibleA__Quest__66603565" FromRole="PossibleAnswers" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="PossibleAnswers" Relationship="Self.FK__PossibleA__Quest__66603565" FromRole="Questions" ToRole="PossibleAnswers" />
+          <NavigationProperty Name="Test" Relationship="Self.FK__Questions__TestI__178D7CA5" FromRole="Questions" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Score" Type="Byte" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimeSpan" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="TestId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Results__Student__308E3499" FromRole="Results" ToRole="Students" />
+          <NavigationProperty Name="Test" Relationship="Self.FK__Results__TestId__1881A0DE" FromRole="Results" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupId" Type="Int32" />
+          <NavigationProperty Name="Group" Relationship="Self.FK__Students__GroupI__4D5F7D71" FromRole="Students" ToRole="Groups" />
+          <NavigationProperty Name="Results" Relationship="Self.FK__Results__Student__308E3499" FromRole="Students" ToRole="Results" />
+          <NavigationProperty Name="StudentsAccounts" Relationship="Self.FK__StudentsA__Stude__32AB8735" FromRole="Students" ToRole="StudentsAccounts" />
+          <NavigationProperty Name="TestsStudents" Relationship="Self.FK__TestsStud__Stude__02FC7413" FromRole="Students" ToRole="TestsStudents" />
+        </EntityType>
+        <EntityType Name="StudentsAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="LoginPasswordId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="LoginsPassword" Relationship="Self.FK__StudentsA__Login__339FAB6E" FromRole="StudentsAccounts" ToRole="LoginsPasswords" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__StudentsA__Stude__32AB8735" FromRole="StudentsAccounts" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tests" Relationship="Self.FK__Tests__SubjectId__15A53433" FromRole="Subjects" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="EducationalEstablishmentId" Type="Int32" />
+          <Property Name="ConfirmationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Confirmation" Relationship="Self.FK__Teachers__Confir__5165187F" FromRole="Teachers" ToRole="Confirmations" />
+          <NavigationProperty Name="EducationalEstablishment" Relationship="Self.FK__Teachers__Educat__634EBE90" FromRole="Teachers" ToRole="EducationalEstablishments" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK__Groups__TeacherI__373B3228" FromRole="Teachers" ToRole="Groups" />
+          <NavigationProperty Name="TeachersAccounts" Relationship="Self.FK__TeachersA__Teach__2CF2ADDF" FromRole="Teachers" ToRole="TeachersAccounts" />
+          <NavigationProperty Name="Tests" Relationship="Self.FK__Tests__TeacherId__1699586C" FromRole="Teachers" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="TeachersAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <Property Name="LoginPasswordId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="LoginsPassword" Relationship="Self.FK__TeachersA__Login__2DE6D218" FromRole="TeachersAccounts" ToRole="LoginsPasswords" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__TeachersA__Teach__2CF2ADDF" FromRole="TeachersAccounts" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="Deadline" Type="DateTime" Precision="3" />
+          <Property Name="MaxScore" Type="Byte" Nullable="false" />
+          <Property Name="IsScoreVisible" Type="Boolean" Nullable="false" />
+          <Property Name="AreAnswersVisible" Type="Boolean" Nullable="false" />
+          <Property Name="OnePlaythrough" Type="Boolean" Nullable="false" />
+          <Property Name="SubjectId" Type="Int16" Nullable="false" />
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK__Questions__TestI__178D7CA5" FromRole="Tests" ToRole="Questions" />
+          <NavigationProperty Name="Results" Relationship="Self.FK__Results__TestId__1881A0DE" FromRole="Tests" ToRole="Results" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK__Tests__SubjectId__15A53433" FromRole="Tests" ToRole="Subjects" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__Tests__TeacherId__1699586C" FromRole="Tests" ToRole="Teachers" />
+          <NavigationProperty Name="TestsGroups" Relationship="Self.FK__TestsGrou__TestI__14B10FFA" FromRole="Tests" ToRole="TestsGroups" />
+          <NavigationProperty Name="TestsStudents" Relationship="Self.FK__TestsStud__TestI__13BCEBC1" FromRole="Tests" ToRole="TestsStudents" />
+        </EntityType>
+        <EntityType Name="TestsGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestId" Type="Int64" Nullable="false" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="Self.FK__TestsGrou__Group__17036CC0" FromRole="TestsGroups" ToRole="Groups" />
+          <NavigationProperty Name="Test" Relationship="Self.FK__TestsGrou__TestI__14B10FFA" FromRole="TestsGroups" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="TestsStudent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="TestId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__TestsStud__Stude__02FC7413" FromRole="TestsStudents" ToRole="Students" />
+          <NavigationProperty Name="Test" Relationship="Self.FK__TestsStud__TestI__13BCEBC1" FromRole="TestsStudents" ToRole="Tests" />
+        </EntityType>
+        <Association Name="FK__Administr__Admin__25518C17">
+          <End Role="Administrators" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="AdministratorsAccounts" Type="Self.AdministratorsAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrators">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdministratorsAccounts">
+              <PropertyRef Name="AdministratorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Administr__Login__2645B050">
+          <End Role="LoginsPasswords" Type="Self.LoginsPassword" Multiplicity="1" />
+          <End Role="AdministratorsAccounts" Type="Self.AdministratorsAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginsPasswords">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdministratorsAccounts">
+              <PropertyRef Name="LoginPasswordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cities__CountryI__286302EC">
+          <End Role="Countries" Type="Self.Country" Multiplicity="1" />
+          <End Role="Cities" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Education__CityI__79FD19BE">
+          <End Role="Cities" Type="Self.City" Multiplicity="1" />
+          <End Role="EducationalEstablishments" Type="Self.EducationalEstablishment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EducationalEstablishments">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teachers__Confir__5165187F">
+          <End Role="Confirmations" Type="Self.Confirmation" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Confirmations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="ConfirmationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teachers__Educat__634EBE90">
+          <End Role="EducationalEstablishments" Type="Self.EducationalEstablishment" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EducationalEstablishments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="EducationalEstablishmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Groups__TeacherI__373B3228">
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__GroupI__4D5F7D71">
+          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestsGrou__Group__17036CC0">
+          <End Role="Groups" Type="Self.Group" Multiplicity="1" />
+          <End Role="TestsGroups" Type="Self.TestsGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestsGroups">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentsA__Login__339FAB6E">
+          <End Role="LoginsPasswords" Type="Self.LoginsPassword" Multiplicity="1" />
+          <End Role="StudentsAccounts" Type="Self.StudentsAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginsPasswords">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentsAccounts">
+              <PropertyRef Name="LoginPasswordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TeachersA__Login__2DE6D218">
+          <End Role="LoginsPasswords" Type="Self.LoginsPassword" Multiplicity="1" />
+          <End Role="TeachersAccounts" Type="Self.TeachersAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginsPasswords">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeachersAccounts">
+              <PropertyRef Name="LoginPasswordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PossibleA__Quest__66603565">
+          <End Role="Questions" Type="Self.Question" Multiplicity="1" />
+          <End Role="PossibleAnswers" Type="Self.PossibleAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PossibleAnswers">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__TestI__178D7CA5">
+          <End Role="Tests" Type="Self.Test" Multiplicity="1" />
+          <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Results__Student__308E3499">
+          <End Role="Students" Type="Self.Student" Multiplicity="1" />
+          <End Role="Results" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Results__TestId__1881A0DE">
+          <End Role="Tests" Type="Self.Test" Multiplicity="1" />
+          <End Role="Results" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentsA__Stude__32AB8735">
+          <End Role="Students" Type="Self.Student" Multiplicity="1" />
+          <End Role="StudentsAccounts" Type="Self.StudentsAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentsAccounts">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestsStud__Stude__02FC7413">
+          <End Role="Students" Type="Self.Student" Multiplicity="1" />
+          <End Role="TestsStudents" Type="Self.TestsStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestsStudents">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tests__SubjectId__15A53433">
+          <End Role="Subjects" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Tests" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tests">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TeachersA__Teach__2CF2ADDF">
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="TeachersAccounts" Type="Self.TeachersAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeachersAccounts">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tests__TeacherId__1699586C">
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Tests" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tests">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestsGrou__TestI__14B10FFA">
+          <End Role="Tests" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestsGroups" Type="Self.TestsGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestsGroups">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestsStud__TestI__13BCEBC1">
+          <End Role="Tests" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestsStudents" Type="Self.TestsStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestsStudents">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestApplicationDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrators" EntityType="Self.Administrator" />
+          <EntitySet Name="AdministratorsAccounts" EntityType="Self.AdministratorsAccount" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Confirmations" EntityType="Self.Confirmation" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="EducationalEstablishments" EntityType="Self.EducationalEstablishment" />
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="LoginsPasswords" EntityType="Self.LoginsPassword" />
+          <EntitySet Name="PossibleAnswers" EntityType="Self.PossibleAnswer" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="Results" EntityType="Self.Result" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="StudentsAccounts" EntityType="Self.StudentsAccount" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
+          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <EntitySet Name="TeachersAccounts" EntityType="Self.TeachersAccount" />
+          <EntitySet Name="Tests" EntityType="Self.Test" />
+          <EntitySet Name="TestsGroups" EntityType="Self.TestsGroup" />
+          <EntitySet Name="TestsStudents" EntityType="Self.TestsStudent" />
+          <AssociationSet Name="FK__Administr__Admin__25518C17" Association="Self.FK__Administr__Admin__25518C17">
+            <End Role="Administrators" EntitySet="Administrators" />
+            <End Role="AdministratorsAccounts" EntitySet="AdministratorsAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Administr__Login__2645B050" Association="Self.FK__Administr__Login__2645B050">
+            <End Role="LoginsPasswords" EntitySet="LoginsPasswords" />
+            <End Role="AdministratorsAccounts" EntitySet="AdministratorsAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cities__CountryI__286302EC" Association="Self.FK__Cities__CountryI__286302EC">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Education__CityI__79FD19BE" Association="Self.FK__Education__CityI__79FD19BE">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="EducationalEstablishments" EntitySet="EducationalEstablishments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teachers__Confir__5165187F" Association="Self.FK__Teachers__Confir__5165187F">
+            <End Role="Confirmations" EntitySet="Confirmations" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teachers__Educat__634EBE90" Association="Self.FK__Teachers__Educat__634EBE90">
+            <End Role="EducationalEstablishments" EntitySet="EducationalEstablishments" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Groups__TeacherI__373B3228" Association="Self.FK__Groups__TeacherI__373B3228">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__GroupI__4D5F7D71" Association="Self.FK__Students__GroupI__4D5F7D71">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestsGrou__Group__17036CC0" Association="Self.FK__TestsGrou__Group__17036CC0">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="TestsGroups" EntitySet="TestsGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentsA__Login__339FAB6E" Association="Self.FK__StudentsA__Login__339FAB6E">
+            <End Role="LoginsPasswords" EntitySet="LoginsPasswords" />
+            <End Role="StudentsAccounts" EntitySet="StudentsAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TeachersA__Login__2DE6D218" Association="Self.FK__TeachersA__Login__2DE6D218">
+            <End Role="LoginsPasswords" EntitySet="LoginsPasswords" />
+            <End Role="TeachersAccounts" EntitySet="TeachersAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PossibleA__Quest__66603565" Association="Self.FK__PossibleA__Quest__66603565">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="PossibleAnswers" EntitySet="PossibleAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__TestI__178D7CA5" Association="Self.FK__Questions__TestI__178D7CA5">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Results__Student__308E3499" Association="Self.FK__Results__Student__308E3499">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Results__TestId__1881A0DE" Association="Self.FK__Results__TestId__1881A0DE">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentsA__Stude__32AB8735" Association="Self.FK__StudentsA__Stude__32AB8735">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="StudentsAccounts" EntitySet="StudentsAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestsStud__Stude__02FC7413" Association="Self.FK__TestsStud__Stude__02FC7413">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="TestsStudents" EntitySet="TestsStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tests__SubjectId__15A53433" Association="Self.FK__Tests__SubjectId__15A53433">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Tests" EntitySet="Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TeachersA__Teach__2CF2ADDF" Association="Self.FK__TeachersA__Teach__2CF2ADDF">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="TeachersAccounts" EntitySet="TeachersAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tests__TeacherId__1699586C" Association="Self.FK__Tests__TeacherId__1699586C">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Tests" EntitySet="Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestsGrou__TestI__14B10FFA" Association="Self.FK__TestsGrou__TestI__14B10FFA">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="TestsGroups" EntitySet="TestsGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestsStud__TestI__13BCEBC1" Association="Self.FK__TestsStud__TestI__13BCEBC1">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="TestsStudents" EntitySet="TestsStudents" />
+          </AssociationSet>
+          <FunctionImport Name="CheckAuthorization">
+            <Parameter Name="Login" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Type" Mode="In" Type="Byte" />
+            <Parameter Name="Result" Mode="InOut" Type="Boolean" />
+            <Parameter Name="Id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteStudentAccount">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ExistsLogin">
+            <Parameter Name="Login" Mode="In" Type="String" />
+            <Parameter Name="Result" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllAvailibleTests" ReturnType="Collection(TestApplicationDBModel.GetAllAvailibleTests_Result)" />
+          <FunctionImport Name="GetAllAvailibleTestsBySubject" ReturnType="Collection(TestApplicationDBModel.GetAllAvailibleTestsBySubject_Result)">
+            <Parameter Name="SubjectId" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllSubjects" ReturnType="Collection(TestApplicationDBModel.GetAllSubjects_Result)" />
+          <FunctionImport Name="GetConfirmation">
+            <Parameter Name="TeacherId" Mode="In" Type="Int32" />
+            <Parameter Name="Diploma" Mode="InOut" Type="Binary" />
+            <Parameter Name="Passport" Mode="InOut" Type="Binary" />
+            <Parameter Name="FromWork" Mode="InOut" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="GetInfoAboutStudentProfile" ReturnType="Collection(TestApplicationDBModel.GetInfoAboutStudentProfile_Result)">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetPossibleAnswersForQuestion" ReturnType="Collection(TestApplicationDBModel.GetPossibleAnswersForQuestion_Result)">
+            <Parameter Name="QuestionId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetQuestionsForTest" ReturnType="Collection(TestApplicationDBModel.GetQuestionsForTest_Result)">
+            <Parameter Name="TestId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetResultsByStudentId" ReturnType="Collection(TestApplicationDBModel.GetResultsByStudentId_Result)">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetTestsByRequest" ReturnType="Collection(TestApplicationDBModel.GetTestsByRequest_Result)">
+            <Parameter Name="Request" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetTestsForGroup" ReturnType="Collection(TestApplicationDBModel.GetTestsForGroup_Result)">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetTestsForStudent" ReturnType="Collection(TestApplicationDBModel.GetTestsForStudent_Result)">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertIntoStudents">
+            <Parameter Name="Login" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Surname" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertIntoTeachers">
+            <Parameter Name="Login" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Surname" Mode="In" Type="String" />
+            <Parameter Name="DiplomaPhoto" Mode="In" Type="Binary" />
+            <Parameter Name="PassportPhoto" Mode="In" Type="Binary" />
+            <Parameter Name="FromWork" Mode="In" Type="Binary" />
+            <Parameter Name="EducationalEstablishment" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SetConfirmation">
+            <Parameter Name="TeacherId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SetTestToGroup">
+            <Parameter Name="TestId" Mode="In" Type="Int64" />
+            <Parameter Name="GroupName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SetTestToStudent">
+            <Parameter Name="Login" Mode="In" Type="String" />
+            <Parameter Name="TestId" Mode="In" Type="Int64" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetAllAvailibleTests_Result">
+          <Property Type="Int64" Name="TestId" Nullable="false" />
+          <Property Type="String" Name="TestName" Nullable="false" MaxLength="300" />
+          <Property Type="DateTime" Name="TestDeadLine" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TeacherName" Nullable="false" MaxLength="152" />
+        </ComplexType>
+        <ComplexType Name="GetAllAvailibleTestsBySubject_Result">
+          <Property Type="Int64" Name="TestId" Nullable="false" />
+          <Property Type="String" Name="TestName" Nullable="false" MaxLength="300" />
+          <Property Type="DateTime" Name="TestDeadLine" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TeacherName" Nullable="false" MaxLength="152" />
+        </ComplexType>
+        <ComplexType Name="GetAllSubjects_Result">
+          <Property Type="Int16" Name="SubjectId" Nullable="false" />
+          <Property Type="String" Name="SubjectName" Nullable="false" MaxLength="75" />
+        </ComplexType>
+        <ComplexType Name="GetInfoAboutStudentProfile_Result">
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="75" />
+          <Property Type="String" Name="Surname" Nullable="false" MaxLength="75" />
+          <Property Type="String" Name="Login" Nullable="false" MaxLength="75" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="75" />
+          <Property Type="String" Name="GroupName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetPossibleAnswersForQuestion_Result">
+          <Property Type="Int64" Name="AnswerId" Nullable="false" />
+          <Property Type="String" Name="AnswerText" Nullable="false" MaxLength="300" />
+          <Property Type="Boolean" Name="IsRight" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetQuestionsForTest_Result">
+          <Property Type="Int64" Name="QuestionId" Nullable="false" />
+          <Property Type="String" Name="QuestionText" Nullable="false" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="GetResultsByStudentId_Result">
+          <Property Type="Int64" Name="TestId" Nullable="false" />
+          <Property Type="String" Name="TestName" Nullable="false" MaxLength="300" />
+          <Property Type="Byte" Name="Score" Nullable="false" />
+          <Property Type="Byte" Name="MaxScore" Nullable="false" />
+          <Property Type="DateTime" Name="Time" Nullable="false" Precision="23" />
+          <Property Type="Time" Name="TimeSpan" Nullable="false" />
+          <Property Type="String" Name="TeacherName" Nullable="false" MaxLength="151" />
+          <Property Type="Boolean" Name="IsScoreVisible" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetTestsByRequest_Result">
+          <Property Type="Int64" Name="TestId" Nullable="false" />
+          <Property Type="String" Name="TestName" Nullable="false" MaxLength="300" />
+          <Property Type="DateTime" Name="TestDeadLine" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TeacherName" Nullable="false" MaxLength="152" />
+        </ComplexType>
+        <ComplexType Name="GetTestsForGroup_Result">
+          <Property Type="Int64" Name="TestId" Nullable="false" />
+          <Property Type="String" Name="TestName" Nullable="false" MaxLength="300" />
+          <Property Type="DateTime" Name="TestDeadLine" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TeacherName" Nullable="false" MaxLength="152" />
+        </ComplexType>
+        <ComplexType Name="GetTestsForStudent_Result">
+          <Property Type="Int64" Name="TestId" Nullable="false" />
+          <Property Type="String" Name="TestName" Nullable="false" MaxLength="300" />
+          <Property Type="DateTime" Name="TestDeadLine" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TeacherName" Nullable="false" MaxLength="152" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TestApplicationDBModelContainer" CdmEntityContainer="TestApplicationDBContext">
+          <EntitySetMapping Name="Administrators">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.Administrator">
+              <MappingFragment StoreEntitySet="Administrators">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdministratorsAccounts">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.AdministratorsAccount">
+              <MappingFragment StoreEntitySet="AdministratorsAccounts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AdministratorId" ColumnName="AdministratorId" />
+                <ScalarProperty Name="LoginPasswordId" ColumnName="LoginPasswordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Confirmations">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.Confirmation">
+              <MappingFragment StoreEntitySet="Confirmations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DiplomaPhoto" ColumnName="DiplomaPhoto" />
+                <ScalarProperty Name="PassportPhoto" ColumnName="PassportPhoto" />
+                <ScalarProperty Name="ConfirmationFromPlaceOfWork" ColumnName="ConfirmationFromPlaceOfWork" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EducationalEstablishments">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.EducationalEstablishment">
+              <MappingFragment StoreEntitySet="EducationalEstablishments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.Group">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginsPasswords">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.LoginsPassword">
+              <MappingFragment StoreEntitySet="LoginsPasswords">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PossibleAnswers">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.PossibleAnswer">
+              <MappingFragment StoreEntitySet="PossibleAnswers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="IsRight" ColumnName="IsRight" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.Result">
+              <MappingFragment StoreEntitySet="Results">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="TimeSpan" ColumnName="TimeSpan" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentsAccounts">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.StudentsAccount">
+              <MappingFragment StoreEntitySet="StudentsAccounts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="LoginPasswordId" ColumnName="LoginPasswordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.Subject">
+              <MappingFragment StoreEntitySet="Subjects">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.Teacher">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="EducationalEstablishmentId" ColumnName="EducationalEstablishmentId" />
+                <ScalarProperty Name="ConfirmationId" ColumnName="ConfirmationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeachersAccounts">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.TeachersAccount">
+              <MappingFragment StoreEntitySet="TeachersAccounts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="LoginPasswordId" ColumnName="LoginPasswordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.Test">
+              <MappingFragment StoreEntitySet="Tests">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="MaxScore" ColumnName="MaxScore" />
+                <ScalarProperty Name="IsScoreVisible" ColumnName="IsScoreVisible" />
+                <ScalarProperty Name="AreAnswersVisible" ColumnName="AreAnswersVisible" />
+                <ScalarProperty Name="OnePlaythrough" ColumnName="OnePlaythrough" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestsGroups">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.TestsGroup">
+              <MappingFragment StoreEntitySet="TestsGroups">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestsStudents">
+            <EntityTypeMapping TypeName="TestApplicationDBModel.TestsStudent">
+              <MappingFragment StoreEntitySet="TestsStudents">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CheckAuthorization" FunctionName="Хранилище TestApplicationDBModel.CheckAuthorization" />
+          <FunctionImportMapping FunctionImportName="DeleteStudentAccount" FunctionName="Хранилище TestApplicationDBModel.DeleteStudentAccount" />
+          <FunctionImportMapping FunctionImportName="ExistsLogin" FunctionName="Хранилище TestApplicationDBModel.ExistsLogin" />
+          <FunctionImportMapping FunctionImportName="GetAllAvailibleTests" FunctionName="Хранилище TestApplicationDBModel.GetAllAvailibleTests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestApplicationDBModel.GetAllAvailibleTests_Result">
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="TestName" ColumnName="TestName" />
+                <ScalarProperty Name="TestDeadLine" ColumnName="TestDeadLine" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllAvailibleTestsBySubject" FunctionName="Хранилище TestApplicationDBModel.GetAllAvailibleTestsBySubject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestApplicationDBModel.GetAllAvailibleTestsBySubject_Result">
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="TestName" ColumnName="TestName" />
+                <ScalarProperty Name="TestDeadLine" ColumnName="TestDeadLine" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllSubjects" FunctionName="Хранилище TestApplicationDBModel.GetAllSubjects">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestApplicationDBModel.GetAllSubjects_Result">
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetConfirmation" FunctionName="Хранилище TestApplicationDBModel.GetConfirmation" />
+          <FunctionImportMapping FunctionImportName="GetInfoAboutStudentProfile" FunctionName="Хранилище TestApplicationDBModel.GetInfoAboutStudentProfile">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestApplicationDBModel.GetInfoAboutStudentProfile_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetPossibleAnswersForQuestion" FunctionName="Хранилище TestApplicationDBModel.GetPossibleAnswersForQuestion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestApplicationDBModel.GetPossibleAnswersForQuestion_Result">
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+                <ScalarProperty Name="AnswerText" ColumnName="AnswerText" />
+                <ScalarProperty Name="IsRight" ColumnName="IsRight" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetQuestionsForTest" FunctionName="Хранилище TestApplicationDBModel.GetQuestionsForTest">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestApplicationDBModel.GetQuestionsForTest_Result">
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetResultsByStudentId" FunctionName="Хранилище TestApplicationDBModel.GetResultsByStudentId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestApplicationDBModel.GetResultsByStudentId_Result">
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="TestName" ColumnName="TestName" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="MaxScore" ColumnName="MaxScore" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="TimeSpan" ColumnName="TimeSpan" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="IsScoreVisible" ColumnName="IsScoreVisible" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTestsByRequest" FunctionName="Хранилище TestApplicationDBModel.GetTestsByRequest">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestApplicationDBModel.GetTestsByRequest_Result">
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="TestName" ColumnName="TestName" />
+                <ScalarProperty Name="TestDeadLine" ColumnName="TestDeadLine" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTestsForGroup" FunctionName="Хранилище TestApplicationDBModel.GetTestsForGroup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestApplicationDBModel.GetTestsForGroup_Result">
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="TestName" ColumnName="TestName" />
+                <ScalarProperty Name="TestDeadLine" ColumnName="TestDeadLine" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTestsForStudent" FunctionName="Хранилище TestApplicationDBModel.GetTestsForStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestApplicationDBModel.GetTestsForStudent_Result">
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="TestName" ColumnName="TestName" />
+                <ScalarProperty Name="TestDeadLine" ColumnName="TestDeadLine" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertIntoStudents" FunctionName="Хранилище TestApplicationDBModel.InsertIntoStudents" />
+          <FunctionImportMapping FunctionImportName="InsertIntoTeachers" FunctionName="Хранилище TestApplicationDBModel.InsertIntoTeachers" />
+          <FunctionImportMapping FunctionImportName="SetConfirmation" FunctionName="Хранилище TestApplicationDBModel.SetConfirmation" />
+          <FunctionImportMapping FunctionImportName="SetTestToGroup" FunctionName="Хранилище TestApplicationDBModel.SetTestToGroup" />
+          <FunctionImportMapping FunctionImportName="SetTestToStudent" FunctionName="Хранилище TestApplicationDBModel.SetTestToStudent" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

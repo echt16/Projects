@@ -1,0 +1,304 @@
+﻿<Window x:Class="Coursework.StudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Coursework"
+        mc:Ignorable="d"
+        Title="StudentWindow" Height="500" Width="1000"
+        Icon="{StaticResource AppIcon}">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="/background.jpg"/>
+        </Grid.Background>
+        <Label Name="Greating_Label" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"  Margin="0, 20, 0, 0" FontSize="36" Foreground="#FF2D5D73"/>
+        <DockPanel LastChildFill="True">
+            <Image DockPanel.Dock="Top" HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Margin="20" Source="/icon.png">
+            </Image>
+            <Grid DockPanel.Dock="Left" HorizontalAlignment="Left"  Margin="20, 0, 20, 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Margin="30, 0, 0, 0" Content="My Tests" Click="MyTests_Button_Click" Height="35" FontFamily="Arial Black" FontSize="18"  BorderBrush="White" Foreground="White" Width="170" >
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF17161E" Offset="0"/>
+                                <GradientStop Color="#FF3E5C5C" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Label Name="TestsCount_Label" Grid.Column="1" Content="0" Foreground="White"></Label>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Margin="30, 0, 0, 0" Content="Tests of group" Click="GroupsTests_Button_Click" Height="35" FontFamily="Arial Black" FontSize="18"  BorderBrush="White" Foreground="White" Width="170">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF17161E" Offset="1"/>
+                                <GradientStop Color="#FF3E5C5C" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Label Name="GroupsCount_Label" Grid.Column="1" Content="0" Foreground="White"></Label>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Margin="30, 0, 0, 0" Content="Results" Click="Results_Button_Click"  Height="35" FontFamily="Arial Black" FontSize="18"  BorderBrush="White" Foreground="White" Width="170">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF17161E" Offset="0"/>
+                                <GradientStop Color="#FF3E5C5C" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Label Grid.Column="1" Content=" " Foreground="White"></Label>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Margin="30, 0, 0, 0" Content="All tests" Click="AllTests_Button_Click" Height="35" FontFamily="Arial Black" FontSize="18"  BorderBrush="White" Foreground="White" Width="170">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF17161E" Offset="1"/>
+                                <GradientStop Color="#FF3E5C5C" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Label Grid.Column="1" Content=" " Foreground="White"></Label>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Margin="30, 0, 0, 0" Content="Profile" Click="Profile_Button_Click" Height="35" FontFamily="Arial Black" FontSize="18"  BorderBrush="White" Foreground="White" Width="170">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF17161E" Offset="0"/>
+                                <GradientStop Color="#FF3E5C5C" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Label Grid.Column="1" Content=" " Foreground="White"></Label>
+                </Grid>
+            </Grid>
+            <Grid Name="ParentGrid">
+                <DockPanel x:Name="MyTests_DockPanel" DockPanel.Dock="Right" LastChildFill="True" Visibility="Collapsed" Width="{Binding ActualWidth, ElementName=ParentGrid}">
+                    <Label DockPanel.Dock="Top" Content="My Tests" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"  FontSize="36" Foreground="White"/>
+                    <Button DockPanel.Dock="Bottom" Margin="10" Content="Take the test" Click="TakeMyTest_Click" Height="35" FontFamily="Arial Black" FontSize="18"  BorderBrush="White" Foreground="White" Width="170" HorizontalAlignment="Right">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF17161E" Offset="1"/>
+                                <GradientStop Color="#FF3E5C5C" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <ListView DockPanel.Dock="Top" x:Name="MyTests_ListView" Margin="5" Foreground="White" BorderBrush="#FF828790">
+                        <ListView.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF3E5C5C" Offset="0"/>
+                                <GradientStop Color="#FF232130" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListView.Background>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Name" Width="340" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="DeadLine" Width="150" DisplayMemberBinding="{Binding DeadLine}"/>
+                                <GridViewColumn Header="Teacher" Width="200" DisplayMemberBinding="{Binding TeacherName}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+                <DockPanel x:Name="GroupsTests_DockPanel" DockPanel.Dock="Right" LastChildFill="True" Visibility="Collapsed" Width="{Binding ActualWidth, ElementName=ParentGrid}">
+                    <Label DockPanel.Dock="Top" Content="Tests of group" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"  FontSize="36" Foreground="White"/>
+                    <Button DockPanel.Dock="Bottom" Margin="10" Content="Take the test" Click="TakeGroupTest_Click" Height="35" FontFamily="Arial Black" FontSize="18"  BorderBrush="White" Foreground="White" Width="170" HorizontalAlignment="Right">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF17161E" Offset="1"/>
+                                <GradientStop Color="#FF3E5C5C" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <ListView DockPanel.Dock="Top" x:Name="GroupsTests_ListView" Margin="5" Foreground="White">
+                        <ListView.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF3E5C5C" Offset="0"/>
+                                <GradientStop Color="#FF232130" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListView.Background>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Name" Width="340" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="DeadLine" Width="150" DisplayMemberBinding="{Binding DeadLine}"/>
+                                <GridViewColumn Header="Teacher" Width="200" DisplayMemberBinding="{Binding TeacherName}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+                <DockPanel x:Name="Results_DockPanel" DockPanel.Dock="Right" LastChildFill="True" Visibility="Collapsed" Width="{Binding ActualWidth, ElementName=ParentGrid}">
+                    <Label DockPanel.Dock="Top" Content="Results" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"  FontSize="36" Foreground="White"/>
+                    <ListView DockPanel.Dock="Top" x:Name="Results_ListView" Margin="5" Foreground="White">
+                        <ListView.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF3E5C5C" Offset="0"/>
+                                <GradientStop Color="#FF232130" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListView.Background>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Score/MaxScore" DisplayMemberBinding="{Binding Score}"/>
+                                <GridViewColumn Header="Start time" Width="150" DisplayMemberBinding="{Binding Time}"/>
+                                <GridViewColumn Header="Timespan" Width="100" DisplayMemberBinding="{Binding TimeSpan}"/>
+                                <GridViewColumn Header="Teacher" Width="150" DisplayMemberBinding="{Binding TeacherName}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+                <DockPanel x:Name="AllCategories_DockPanel" DockPanel.Dock="Right" LastChildFill="True" Visibility="Collapsed" Width="{Binding ActualWidth, ElementName=ParentGrid}">
+                    <Label DockPanel.Dock="Top" Content="Categories" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"  FontSize="36" Foreground="White"/>
+                    <Button DockPanel.Dock="Bottom" Margin="10" Content="Choose" Click="Choose_Click" Height="35" FontFamily="Arial Black" FontSize="18"  BorderBrush="White" Foreground="White" Width="170" HorizontalAlignment="Right">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF17161E" Offset="1"/>
+                                <GradientStop Color="#FF3E5C5C" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <ListView DockPanel.Dock="Top" x:Name="Categories_ListView" Margin="5" Foreground="White">
+                        <ListView.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF3E5C5C" Offset="0"/>
+                                <GradientStop Color="#FF232130" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListView.Background>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding SubjectId}"/>
+                                <GridViewColumn Header="Name" Width="700" DisplayMemberBinding="{Binding SubjectName}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+                <DockPanel x:Name="AllTests_DockPanel" DockPanel.Dock="Right" LastChildFill="True" Visibility="Collapsed" Width="{Binding ActualWidth, ElementName=ParentGrid}">
+                    <DockPanel DockPanel.Dock="Top">
+                        <Label DockPanel.Dock="Left" Content="Tests" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"  FontSize="36" Foreground="White"/>
+                        <Label DockPanel.Dock="Right" Name="Category_Label" Content="Category" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"  FontSize="36" Foreground="White"/>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Top">
+                        <Button Content="Search" DockPanel.Dock="Right" Click="Search_Click" Margin="5,0,5,0" Width="60" Foreground="White">
+                            <Button.Background>
+                                <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                                    <GradientStop Color="#FF3E5C5C" Offset="0"/>
+                                    <GradientStop Color="#FF232130" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                        <TextBox PreviewMouseDown="SearchRequest_TextBox_PreviewMouseDown" DockPanel.Dock="Left" Text="Searching request" x:Name="SearchRequest_TextBox" Margin="5,0,5,0" Background="Transparent" Foreground="White"></TextBox>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Bottom">
+                        <Button DockPanel.Dock="Left" Margin="5" Content="Back" Click="Back_Click" Height="35" FontFamily="Arial Black" FontSize="18"  BorderBrush="White" Foreground="White" Width="170" HorizontalAlignment="Right">
+                            <Button.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#FF17161E" Offset="0"/>
+                                    <GradientStop Color="#FF3E5C5C" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                        <Button DockPanel.Dock="Right" Margin="5" Content="Take the test" Click="TakeTest_Click" Height="35" FontFamily="Arial Black" FontSize="18"  BorderBrush="White" Foreground="White" Width="170" HorizontalAlignment="Right">
+                            <Button.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#FF17161E" Offset="1"/>
+                                    <GradientStop Color="#FF3E5C5C" Offset="0"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                    </DockPanel>
+                    <ListView DockPanel.Dock="Top" x:Name="AllTests_ListView" Margin="5" Foreground="White">
+                        <ListView.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF3E5C5C" Offset="0"/>
+                                <GradientStop Color="#FF232130" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListView.Background>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Name" Width="340" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="DeadLine" Width="150" DisplayMemberBinding="{Binding DeadLine}"/>
+                                <GridViewColumn Header="Teacher" Width="200" DisplayMemberBinding="{Binding TeacherName}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+                <DockPanel x:Name="Profile_DockPanel" DockPanel.Dock="Right" LastChildFill="True" Visibility="Visible" Width="{Binding ActualWidth, ElementName=ParentGrid}">
+                    <Label DockPanel.Dock="Top" Content="Profile" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"  FontSize="36" Foreground="White"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Margin="0, 0, 0, 20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Arial Rounded MT Bold"  FontSize="20" Foreground="White"/>
+                            <TextBox Margin="0,0,10,0" Grid.Row="1" Text="Your name" Name="Name_TextBox" HorizontalAlignment="Stretch" PreviewMouseDoubleClick="Name_TextBox_PreviewMouseDoubleClick"  LostFocus="Name_TextBox_LostFokus" VerticalAlignment="Bottom" FontFamily="Arial Rounded MT Bold"  FontSize="20" Foreground="White" Background="{x:Null}" IsReadOnly="True"/>
+                            <Label Grid.Row="2" Content="Surname:" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Arial Rounded MT Bold"  FontSize="20" Foreground="White"/>
+                            <TextBox Margin="0,0,10,0" Grid.Row="3" Text="Your surname" TextWrapping="Wrap" HorizontalAlignment="Stretch" Name="Surname_TextBox" PreviewMouseDoubleClick="Surname_TextBox_PreviewMouseDoubleClick"  LostFocus="Surname_TextBox_LostFocus"  VerticalAlignment="Bottom" FontFamily="Arial Rounded MT Bold"  FontSize="20" Foreground="White" Background="{x:Null}" IsReadOnly="True"/>
+                            <Label Grid.Row="4" Content="Group:" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Arial Rounded MT Bold"  FontSize="20" Foreground="White"/>
+                            <Label Grid.Row="5" Content="Your group" Name="Group_Label" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Arial Rounded MT Bold"  FontSize="20" Foreground="White"/>
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="0, 0, 0, 20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="Login:" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Arial Rounded MT Bold"  FontSize="20" Foreground="White"/>
+                            <TextBox Margin="0,0,10,0" Grid.Row="1" Text="Your login" Name="Login_TextBox" HorizontalAlignment="Stretch" PreviewMouseDoubleClick="Login_TextBox_PreviewMouseDoubleClick"  LostFocus="Login_TextBox_LostFocus"  VerticalAlignment="Bottom" FontFamily="Arial Rounded MT Bold"  FontSize="20" Foreground="White" Background="{x:Null}" IsReadOnly="True"/>
+                            <Label Grid.Row="2" Content="Password:" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Arial Rounded MT Bold"  FontSize="20" Foreground="White"/>
+                            <TextBox Margin="0,0,10,0" Grid.Row="3" Text="Your Password" Name="Password_TextBox" HorizontalAlignment="Stretch" PreviewMouseDoubleClick="Password_TextBox_PreviewMouseDoubleClick"  LostFocus="Password_TextBox_LostFocus"  VerticalAlignment="Bottom" FontFamily="Arial Rounded MT Bold"  FontSize="20" Foreground="White" Background="{x:Null}" IsReadOnly="True"/>
+                            <Button Margin="0, 0, 10, 0" Grid.Row="5" HorizontalAlignment="Stretch" Content="Delete account" Click="DeleteAccount_Click" Height="35" FontFamily="Arial Rounded MT Bold" FontSize="18"  BorderBrush="White" Foreground="White">
+                                <Button.Background>
+                                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                                        <GradientStop Color="#FF3E5C5C" Offset="1"/>
+                                        <GradientStop Color="#FF232130" Offset="0"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </DockPanel>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

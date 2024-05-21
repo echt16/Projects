@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [dbo].[GetTestsByRequest] @Request nvarchar(200)
+AS
+	SELECT t.Id as TestId, t.[Name] as TestName, t.Deadline as TestDeadLine, t2.Name + ', ' + t2.Surname as TeacherName FROM Tests as t join Teachers as t2 on t2.Id = t.TeacherId
+	where t.[Name] LIKE '%' + @Request + '%' and t.Id <> all(select Id from Tests where Deadline < GETDATE())
+RETURN 0

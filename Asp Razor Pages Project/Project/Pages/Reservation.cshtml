@@ -1,0 +1,185 @@
+﻿@page
+@model Project.Pages.ReservationModel
+@{
+
+}
+
+<style>
+    main {
+        margin: 0 170px;
+        color: rgb(50, 0, 143);
+    }
+
+    .mainDiv {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .mainDiv button {
+            align-self: flex-end;
+        }
+
+    .datesContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 100%;
+        border: 3px solid rgb(50, 0, 143);
+        margin-bottom: 20px;
+        box-shadow: 0 0 15px rgb(33, 255, 8);
+    }
+
+    .dateContainer {
+        width: 150px;
+        height: 30px;
+        margin: 30px 0;
+        border: 3px solid rgb(33, 255, 8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 5px 5px 10px rgb(50, 0, 143);
+    }
+
+    .checkedDiv {
+        border-color: rgb(50, 0, 143);
+        box-shadow: 5px 5px 10px rgb(33, 255, 8);
+    }
+
+    .readonly {
+
+    }
+
+    .my {
+        box-shadow: 5px 5px 10px red;
+    }
+</style>
+
+<form method="post">
+    <label>Questroom:</label>
+    <select name="room">
+        @for (int i = 0; i < Model.QuestRooms.Count; i++)
+        {
+            <option value="@Model.QuestRooms[i].Id">@Model.QuestRooms[i].Name (@Model.QuestRooms[i].Address)</option>
+        }
+    </select>
+    @if (Model.Day.Year == 1)
+    {
+        <input type="date" name="date" />
+    }
+    else
+    {
+        <input type="date" name="date" value="@Model.Day.ToString(@"yyyy-MM-dd")"/>
+    }
+    <button type="submit" class="searchButton">Submit</button>
+</form>
+@if (Model.IsFilled)
+{
+    <p>Free time:</p>
+
+    <form method="post" asp-page-handler="Check" id="reservForm">
+        <div class="mainDiv">
+            <div class="datesContainer">
+                @{
+                    DateTime from = new DateTime(Model.Day.Year, Model.Day.Month, Model.Day.Day, 8, 0, 0);
+                    DateTime to = new DateTime(Model.Day.Year, Model.Day.Month, Model.Day.Day, 18, 0, 0);
+                    for (DateTime i = from; i < to; i = i.AddHours(1))
+                    {
+                        if (Model.IncludedInTheDate(i) == 1)
+                        {
+                            <div class="dateContainer">
+                                <input type="checkbox" value="@i.ToString(@"HH:mm")" checked readonly disabled class="input" />
+                                <label>@i.ToString(@"HH:mm")</label>
+                            </div>
+                        }
+                        else if(Model.IncludedInTheDate(i) == 0)
+                        {
+                            <div class="dateContainer my">
+                                <input type="checkbox" value="@i.ToString(@"HH:mm")" checked readonly disabled class="input" />
+                                <label>@i.ToString(@"HH:mm")</label><br />
+                                <span style="font-size:10px; margin-left:5px;">(Your time)</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="dateContainer">
+                                <input type="checkbox" value="@i.ToString(@"HH:mm")" name="times" class="input" />
+                                <label>@i.ToString(@"HH:mm")</label>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+            <button type="submit" class="searchButton">Reserve</button>
+        </div>
+    </form>
+}
+
+<script name="Scripts">
+    let user = getCookie("user");
+    if (user == "") {
+        location.href = '/Login';
+    }
+
+    function getCookie(name) {
+        let arr = document.cookie.split(";");
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].split("=")[0].trim() == name) {
+                return arr[i].split("=")[1].trim();
+            }
+        }
+        return "";
+    }
+
+    document.querySelectorAll(".input").forEach(x => x.addEventListener("change", function (event) {
+        if (x.checked) {
+            let checkBoxes = document.querySelectorAll(".input");
+            let i = 0;
+
+            for (let y = 0; y < checkBoxes.length; y++) {
+                if (checkBoxes.item(y).value == x.value) {
+                    break;
+                }
+                i++;
+            }
+            if ((@Model.SelectedRoom.TravelTime.Hours + i) > checkBoxes.length) {
+                x.checked = false;
+                alert("Not enough time");
+                return;
+            }
+            for (let j = i + 1; j < (@Model.SelectedRoom.TravelTime.Hours + i) && j < checkBoxes.length; j++) {
+                if (checkBoxes.item(j).checked == true) {
+                    for (let k = j - 1; k >= i && k >= 0; k--) {
+                        checkBoxes.item(k).checked = false;
+                        checkBoxes.item(k).disabled = false;
+                        checkBoxes.item(k).classList.remove("readonly");
+                        checkBoxes.item(k).parentElement.classList.remove("checkedDiv");
+                    }
+                    alert("Time is already taken");
+                    break;
+                }
+                checkBoxes.item(j).checked = true;
+                checkBoxes.item(j).disabled = true;
+                checkBoxes.item(j).classList.add("readonly");
+                checkBoxes.item(j).parentElement.classList.add("checkedDiv");
+                x.parentElement.classList.add("checkedDiv");
+            }
+        }
+        else {
+            let checkBoxes = document.querySelectorAll(".input");
+            let i = 0;
+            for (let y = 0; y < checkBoxes.length; y++) {
+                if (checkBoxes.item(y).value == x.value) {
+                    break;
+                }
+                i++;
+            }
+            for (let j = i; j < (@Model.SelectedRoom.TravelTime.Hours + i) && j < checkBoxes.length; j++) {
+                checkBoxes.item(j).checked = false;
+                checkBoxes.item(j).disabled = false;
+                checkBoxes.item(j).classList.remove("readonly");
+                checkBoxes.item(j).parentElement.classList.remove("checkedDiv");
+                x.parentElement.classList.remove("checkedDiv");
+            }
+        }
+    }));
+</script>

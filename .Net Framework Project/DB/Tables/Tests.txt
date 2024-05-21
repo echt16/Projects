@@ -1,0 +1,18 @@
+CREATE TABLE [dbo].[Tests] (
+    [Id]                BIGINT         IDENTITY (1, 1) NOT NULL,
+    [Name]              NVARCHAR (300) NOT NULL,
+    [IsPrivate]         BIT            DEFAULT ((0)) NOT NULL,
+    [Deadline]          DATETIME       NULL,
+    [MaxScore]          TINYINT        DEFAULT ((12)) NOT NULL,
+    [IsScoreVisible]    BIT            DEFAULT ((0)) NOT NULL,
+    [AreAnswersVisible] BIT            DEFAULT ((0)) NOT NULL,
+    [OnePlaythrough]    BIT            DEFAULT ((0)) NOT NULL,
+    [SubjectId]         SMALLINT       NOT NULL,
+    [TeacherId]         INT            NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([SubjectId]) REFERENCES [dbo].[Subjects] ([Id]),
+    FOREIGN KEY ([TeacherId]) REFERENCES [dbo].[Teachers] ([Id]),
+    CHECK ([Name]<>''),
+    CHECK ([Deadline]>getdate()),
+    CHECK ([MaxScore]>(0))
+);

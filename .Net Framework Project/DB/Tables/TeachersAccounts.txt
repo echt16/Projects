@@ -1,0 +1,9 @@
+CREATE TABLE [dbo].[TeachersAccounts] (
+    [Id]              BIGINT IDENTITY (1, 1) NOT NULL,
+    [TeacherId]       INT    NOT NULL,
+    [LoginPasswordId] BIGINT NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    UNIQUE NONCLUSTERED ([TeacherId] ASC),
+    FOREIGN KEY ([TeacherId]) REFERENCES [dbo].[Teachers] ([Id]),
+    FOREIGN KEY ([LoginPasswordId]) REFERENCES [dbo].[LoginsPasswords] ([Id])
+);

@@ -1,0 +1,299 @@
+﻿@page
+@using Project.Models
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+    form {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #modalWindow {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+
+    #filterModalForm {
+        width: 60%;
+        border-radius: 20px;
+        display: flex;
+        padding: 0 30px;
+        align-items: stretch;
+        background-color: white;
+        flex-direction: column;
+        z-index: 10000;
+        box-shadow: 0 0 10px 10px rgb(33, 255, 8);
+        background-color: rgb(50, 0, 143);
+        color: white;
+        text-shadow: 2px 2px 2px rgb(33, 255, 8);
+        padding-bottom: 10px;
+    }
+
+    #exitClick {
+        color: rgb(33, 255, 8);
+    }
+
+        #exitClick:hover {
+            color: white;
+        }
+
+    #filterModalForm .exit {
+        text-align: right;
+    }
+
+        #filterModalForm .exit button {
+            align-content: center;
+            justify-content: center;
+            border: 0;
+            background-color: transparent;
+        }
+
+    #filterModalForm .filterValues {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+    }
+
+        #filterModalForm .filterValues .enter {
+            display: flex;
+            justify-content: space-between;
+        }
+</style>
+
+<link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+<form style="margin: 0px 120px" method="get" id="mainForm">
+    <div class="sort">
+        <button style="border:0; align-content:center;" type="submit" id="sortBtn" class="searchButton">
+            <img src="~/sort.png" height="30px" width="30px" />
+        </button>
+        <label for="sortValue">Sort by:</label>
+        <select name="sortValue" value="@Model.SortBy">
+            @for (int i = 0; i < Model.SortValues.Count; i++)
+            {
+                <option value="@Model.SortValues[i]">@Model.SortValues[i]</option>
+            }
+        </select>
+        <button type="submit" class="searchButton">Sort</button>
+    </div>
+    <div class="filter">
+        <button style="border:0;" id="filterBtn" class="searchButton" type="button">
+            <img src="~/filter.png" height="30px" width="30px" />
+        </button>
+    </div>
+</form>
+<br />
+<div class="roomsDiv">
+    @{
+        List<QuestRoom> qs = null;
+        switch (Model.SortBy)
+        {
+            case "":
+                {
+                    qs = Model.QuestRooms.OrderBy(x => x.Rating).ToList();
+                }
+                break;
+            case "Name":
+                {
+                    qs = Model.QuestRooms.OrderBy(x => x.Name).ToList();
+                }
+                break;
+            case "TravelTime":
+                {
+                    qs = Model.QuestRooms.OrderBy(x => x.TravelTime).ToList();
+                }
+                break;
+            case "MinAge":
+                {
+                    qs = Model.QuestRooms.OrderBy(x => x.MinAge).ToList();
+                }
+                break;
+            case "Rating":
+                {
+                    qs = Model.QuestRooms.OrderBy(x => x.Rating).ToList();
+                }
+                break;
+            case "FearLevel":
+                {
+                    qs = Model.QuestRooms.OrderBy(x => x.FearLevel).ToList();
+                }
+                break;
+            case "DifficultyLevel":
+                {
+                    qs = Model.QuestRooms.OrderBy(x => x.DifficultyLevel).ToList();
+                }
+                break;
+            case "MinPlayer":
+                {
+                    qs = Model.QuestRooms.OrderBy(x => x.MinPlayer).ToList();
+                }
+                break;
+            case "MaxPlayer":
+                {
+                    qs = Model.QuestRooms.OrderBy(x => x.MaxPlayer).ToList();
+                }
+                break;
+        }
+        if (!Model.SortAsc)
+        {
+            qs.Reverse();
+        }
+        foreach (QuestRoom q in qs)
+        {
+            <div class="roomDiv">
+                <img src="@q.LogoSrc" /><br /><br />
+                <div class="roomTitle">@q.Name</div>
+                <div class="roomInfo">@q.Description.Substring(0, q.Description.Length > 100 ? 100 : q.Description.Length)</div>
+                <a class="roomRef" asp-page="/Room" asp-page-handler="@q.Id">Room</a>
+            </div>
+        }
+        if (Model.QuestRooms.Count == 0)
+        {
+            <p>No rooms found according to these parameters</p>
+        }
+    }
+</div>
+
+<div id="modalWindow">
+    <form id="filterModalForm">
+        <div class="exit">
+            <button style="font-size:30px" id="exitClick">x</button>
+        </div>
+        <div class="filterValues">
+            <label>Travel time</label>
+            <div class="enter">
+                <label>From:</label>
+                <input type="time" id="travelTimeFrom" />
+                <label>To:</label>
+                <input type="time" id="travelTimeTo" />
+            </div>
+        </div>
+        <div class="filterValues">
+            <label>Min age</label>
+            <div class="enter">
+                <label>From:</label>
+                <input type="number" id="minAgeFrom" />
+                <label>To:</label>
+                <input type="number" id="minAgeTo" />
+            </div>
+        </div>
+        <div class="filterValues">
+            <label>Rating</label>
+            <div class="enter">
+                <label>From:</label>
+                <input type="number" id="ratingFrom" />
+                <label>To:</label>
+                <input type="number" id="ratingTo" />
+            </div>
+        </div>
+        <div class="filterValues">
+            <label>Fear Level</label>
+            <div class="enter">
+                <label>From:</label>
+                <input type="number" id="fearLevelFrom" />
+                <label>To:</label>
+                <input type="number" id="fearLevelTo" />
+            </div>
+        </div>
+        <div class="filterValues">
+            <label>Difficulty Level</label>
+            <div class="enter">
+                <label>From:</label>
+                <input type="number" id="difficultyLevelFrom" />
+                <label>To:</label>
+                <input type="number" id="difficultyLevelTo" />
+            </div>
+        </div>
+        <div class="filterValues">
+            <label>Min count of player</label>
+            <div class="enter">
+                <label>From:</label>
+                <input type="number" id="minPlayerFrom" />
+                <label>To:</label>
+                <input type="number" id="minPlayerTo" />
+            </div>
+        </div>
+        <div class="filterValues">
+            <label>Max count of player</label>
+            <div class="enter">
+                <label>From:</label>
+                <input type="number" id="maxPlayerFrom" />
+                <label>To:</label>
+                <input type="number" id="maxPlayerTo" />
+            </div>
+        </div>
+        <button type="submit" class="searchButton">Show</button>
+    </form>
+</div>
+
+
+
+<script name="Scripts">
+
+    document.querySelector("#filterModalForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        var date = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        setCookie("travelTimeFrom", document.querySelector("#travelTimeFrom").value, date);
+        setCookie("minAgeFrom", document.querySelector("#minAgeFrom").value, date);
+        setCookie("ratingFrom", document.querySelector("#ratingFrom").value, date);
+        setCookie("fearLevelFrom", document.querySelector("#fearLevelFrom").value, date);
+        setCookie("difficultyLevelFrom", document.querySelector("#difficultyLevelFrom").value, date);
+        setCookie("maxPlayerFrom", document.querySelector("#maxPlayerFrom").value, date);
+        setCookie("minPlayerFrom", document.querySelector("#minPlayerFrom").value, date);
+        setCookie("travelTimeTo", document.querySelector("#travelTimeTo").value, date);
+        setCookie("minAgeTo", document.querySelector("#minAgeTo").value, date);
+        setCookie("ratingTo", document.querySelector("#ratingTo").value, date);
+        setCookie("fearLevelTo", document.querySelector("#fearLevelTo").value, date);
+        setCookie("difficultyLevelTo", document.querySelector("#difficultyLevelTo").value, date);
+        setCookie("minPlayerTo", document.querySelector("#minPlayerTo").value, date);
+        setCookie("maxPlayerTo", document.querySelector("#maxPlayerTo").value, date);
+        document.querySelector("#mainForm").submit();
+    });
+
+    document.querySelector("#sortBtn").addEventListener("click", function () {
+        let val = getCookie("asc");
+        let value = "";
+        if (val == "" || val == "false") {
+            value = "true";
+        }
+        else if (val == "true") {
+            value = "false";
+        }
+        var date = new Date();
+        setCookie("asc", value, new Date((date.getTime() + 24 * 60 * 60 * 1000)));
+    });
+
+    document.querySelector("#exitClick").addEventListener("click", function () {
+        document.querySelector("#modalWindow").style.display = "none";
+    });
+
+    document.querySelector("#filterBtn").addEventListener("click", function () {
+        document.querySelector("#modalWindow").style.display = "flex";
+    });
+
+    function getCookie(name) {
+        let arr = document.cookie.split(";");
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].split("=")[0].trim() == name) {
+                return arr[i].split("=")[1].trim();
+            }
+        }
+        return "";
+    }
+
+    function setCookie(name, value, date) {
+        var expires = date.toUTCString();
+        var cookieString = name + "=" + value + ";expires=" + expires + ";path=/";
+        document.cookie = cookieString;
+    }
+</script>

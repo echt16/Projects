@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].SetTestToStudent @Login nvarchar(75), @TestId bigint
+AS
+	insert into TestsStudents ([StudentId], [TestId]) values
+	((select s.Id from Students as s 
+	join StudentsAccounts as sc on sc.StudentId = s.Id 
+	join LoginsPasswords as lp on lp.Id = sc.LoginPasswordId 
+	where lp.[Login] = @Login
+	), @TestId)
+RETURN 0

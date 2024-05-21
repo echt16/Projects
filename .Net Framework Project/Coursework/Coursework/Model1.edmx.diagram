@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2e1347ea8203464b8453443848e5842d" Name="Diagram1">
+        <EntityTypeShape EntityType="TestApplicationDBModel.Administrator" Width="1.5" PointX="7.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.AdministratorsAccount" Width="1.5" PointX="9.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.City" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.Confirmation" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.Country" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.EducationalEstablishment" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.Group" Width="1.5" PointX="9.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.LoginsPassword" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.PossibleAnswer" Width="1.5" PointX="14.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.Question" Width="1.5" PointX="12" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.Result" Width="1.5" PointX="14.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.Student" Width="1.5" PointX="12" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.StudentsAccount" Width="1.5" PointX="14.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.Subject" Width="1.5" PointX="7.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.Teacher" Width="1.5" PointX="7.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.TeachersAccount" Width="1.5" PointX="9.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.Test" Width="1.5" PointX="9.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.TestsGroup" Width="1.5" PointX="12" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestApplicationDBModel.TestsStudent" Width="1.5" PointX="14.25" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Administr__Admin__25518C17" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Administr__Login__2645B050" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Cities__CountryI__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Education__CityI__79FD19BE" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Teachers__Confir__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Teachers__Educat__634EBE90" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Groups__TeacherI__373B3228" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Students__GroupI__4D5F7D71" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__TestsGrou__Group__17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__StudentsA__Login__339FAB6E" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__TeachersA__Login__2DE6D218" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__PossibleA__Quest__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Questions__TestI__178D7CA5" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Results__Student__308E3499" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Results__TestId__1881A0DE" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__StudentsA__Stude__32AB8735" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__TestsStud__Stude__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Tests__SubjectId__15A53433" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__TeachersA__Teach__2CF2ADDF" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__Tests__TeacherId__1699586C" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__TestsGrou__TestI__14B10FFA" ManuallyRouted="false" />
+        <AssociationConnector Association="TestApplicationDBModel.FK__TestsStud__TestI__13BCEBC1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

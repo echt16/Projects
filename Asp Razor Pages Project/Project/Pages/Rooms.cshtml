@@ -1,0 +1,100 @@
+﻿@page
+@using Project.Models
+@model Project.Pages.RoomsModel
+@{
+    // User u = new User()
+    // {
+    //     Name = "Admin",
+    //     Login = "admin",
+    //     Password = "123a456B",
+    //     Role = "Admin"
+    // };
+    // Model.context.Users.Add(u);
+    // Model.context.SaveChanges();
+    // Company company = new Company()
+    // {
+    //     Name = "CompanyName1",
+    //     Email = "Email1"
+    // };
+    // Model.context.Companies.Add(company);
+    // Model.context.SaveChanges();
+
+    // QuestRoom r = new QuestRoom()
+    // {
+    //     Address = "Adress2",
+    //     LogoSrc = "https://deep-image.ai/blog/content/images/2022/09/underwater-magic-world-8tyxt9yz.jpeg",
+    //     Description = "Desc2",
+    //     DifficultyLevel = 2,
+    //     FearLevel = 3,
+    //     MinPlayer = 4,
+    //     MaxPlayer = 5,
+    //     MinAge = 16,
+    //     Name = "Name2",
+    //     Rating = 5,
+    //     TravelTime = new TimeSpan(1, 2, 3),
+    //     CompanyId = Model.context.Companies.ToList()[0].Id
+    // };
+    // Model.context.QuestRooms.Add(r);
+    // Model.context.SaveChanges();
+
+    // Photo p = new Photo()
+    // {
+    //     Src = "https://us.123rf.com/450wm/shushanto/shushanto2209/shushanto220900703/191842443-destruction-of-planets-concept-art-illustration-background-image.jpg?ver=6",
+    //     QuestRoomId = Model.context.QuestRooms.ToList().First().Id
+    // };
+    // Photo p1 = new Photo()
+    // {
+    //     Src = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736881_640.jpg",
+    //     QuestRoomId = Model.context.QuestRooms.ToList().First().Id
+    // };
+    // Model.context.Photos.Add(p);
+    // Model.context.Photos.Add(p1);
+    // Model.context.SaveChanges();
+    // PhoneNumber p = new PhoneNumber()
+    // {
+    //     Number = "12345",
+    //     CompanyId = Model.context.QuestRooms.ToList().First().CompanyId
+    // };
+    // Model.context.PhoneNumbers.Add(p);
+    // Model.context.SaveChanges();
+}
+<script>
+    function GetCookieValue(key) 
+    {
+        for (var i = 0; i < document.cookie.split('; ').length; i++) {
+            var t = document.cookie.split('; ')[i].split('=');
+            if (t[0] == key) {
+                return t[1];
+            }
+        }
+        return null;
+    }
+    if (GetCookieValue('user') == null)
+    {
+        location.href = '/Login';
+    }
+</script>
+
+<link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+<form style="margin-left: 120px">
+    Search by name: <input name="name" placeholder="Name..." value=""/>
+    <button class="searchButton">Search</button>
+</form><br />
+<div class="roomsDiv">
+    @{
+        List<QuestRoom> qs = Model.context.QuestRooms.ToList();
+        if (Model.nameSort != "" && Model.nameSort != null)
+        {
+            qs = qs.Where(i => i.Name.ToLower().Contains(Model.nameSort.ToLower())).ToList();
+        }
+        foreach (QuestRoom q in qs)
+        {
+            <div class="roomDiv">
+                <img src="@q.LogoSrc" /><br /><br />
+                <div class="roomTitle">@q.Name</div>
+                <div class="roomInfo">@q.Description.Substring(0, q.Description.Length > 100 ? 100 : q.Description.Length)</div>
+                <a class="roomRef" asp-page="/Room" asp-page-handler="@q.Id">Room</a>
+            </div>
+        }
+    }
+</div>

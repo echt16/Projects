@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].GetInfoAboutStudentProfile @StudentId int
+AS
+if (select GroupId from Students) <> null
+	SELECT top 1 s.[Name], s.Surname, lp.[Login], lp.[Password], g.[Name] as GroupName from Students as s join StudentsAccounts as sa on s.Id = sa.StudentId join LoginsPasswords as lp on sa.LoginPasswordId = lp.Id join Groups as g on g.Id = s.GroupId
+	where s.Id = @StudentId
+else
+	SELECT top 1 s.[Name], s.Surname, lp.[Login], lp.[Password], 'null' as GroupName from Students as s join StudentsAccounts as sa on s.Id = sa.StudentId join LoginsPasswords as lp on sa.LoginPasswordId = lp.Id
+	where s.Id = @StudentId
+RETURN 0

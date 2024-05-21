@@ -1,0 +1,228 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #b086c3;
+}
+
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    background: #c783e7;
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+}
+
+#logo {
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    margin: 10px;
+    z-index: 10000;
+}
+
+#filmSearch {
+    width: 200px;
+    margin-top: 6px;
+    background-color: transparent;
+    border: 0;
+    color: white;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    height: 30px;
+    font-size: 17px;
+    outline: none;
+}
+
+#filmSearch::placeholder {
+    color: rgb(255, 255, 255);
+}
+
+#typeOfFilm {
+    border: 1px solid white;
+    height: 36px;
+}
+
+#searchImg {
+    width: 30px;
+}
+
+#searchButton {
+
+    cursor: pointer;
+    background-color: rgba(240, 248, 255, 0);
+    border: 0px;
+    margin-left: 10px;
+}
+
+select {
+    border-radius: 10px;
+    margin-left: 15px;
+    margin-top: 6px;
+    font-size: 17px;
+    color: white;
+    background-color: rgba(240, 248, 255, 0);
+    width: 150px;
+    outline: none;
+}
+
+select:hover {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+option {
+    height: 30px;
+    background-color: rgba(41, 208, 208, 0);
+    color: black;
+}
+
+#main {
+    margin-right: 10px;
+    display: flex;
+    background-color: transparent;
+}
+
+.divFilm {
+    border: 3px solid rgb(255, 255, 255);
+    width: 300px;
+    border-radius: 40px;
+    overflow: hidden;
+    /* height: 350px; */
+    background-color: #812ba9;
+    margin: 15px;
+}
+
+.titleFilm {
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    margin: 5px;
+}
+
+.divBtn {
+    display: flex;
+    justify-content: center;
+}
+
+.btnMoreFilm {
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    background-color: rgba(240, 248, 255, 0);
+    border: 3px solid rgb(255, 255, 255);
+    width: 150px;
+    height: 40px;
+    margin: 5px 0 10px 0;
+}
+
+.btnMoreFilm:hover {
+    background-color: #ffffff;
+    color: black;
+    transition: all 0.5s ease-out;
+}
+
+.imgFilm {
+    width: 100%;
+}
+
+#films {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+.btnPag {
+    color: white;
+    border: 3px solid white;
+    border-radius: 50%;
+    background-color: #812ba900;
+    font-size: 22px;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
+.btnPag:hover {
+    background-color: #ffffff;
+    color: black;
+    transition: all 0.5s ease-out;
+}
+
+#pagination {
+    flex-wrap: wrap;
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+}
+
+.center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.modalWindow{
+    position: sticky;
+    margin-top: 50px;
+    width: 650px;
+    height: 450px;
+    border: 3px solid rgb(255, 255, 255);
+    display: flex;
+    flex-direction: row;
+    border-radius: 50px;
+    overflow: hidden;
+    background-color: #8f67a1;
+    box-shadow: 0 0 15px 15px rgba(176, 29, 176, 0.7);
+    
+}
+.modalDivImg{
+    height: 100%;
+    width: 50%;
+}
+.modalDivImg>img{
+    width: 100%;
+    height: 100%;
+}
+.cross{
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 305px;
+    height: 40px;
+
+    display: flex;
+    justify-content: end;
+}
+.cross>img{
+    height: 100%;
+    cursor: pointer;
+}
+.divsInfo{
+    margin-top: 40px;
+    margin-left: 30px;
+    height: 80px;
+    width: 230px;
+    word-wrap: break-word;
+    font-size: 18px;
+    color: white;
+}
+#forModal{
+    left:0;
+    top:0;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    justify-content: center;
+    display: none;
+    z-index: 10000;
+}

@@ -1,0 +1,4 @@
+﻿CREATE PROCEDURE [dbo].GetPossibleAnswersForQuestion @QuestionId bigint
+AS
+	SELECT pa.Id as AnswerId, pa.[Text] as AnswerText, pa.IsTrue from PossibleAnswers as pa
+RETURN 0

@@ -1,0 +1,49 @@
+﻿<Window x:Class="project.Changing"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:project"
+        mc:Ignorable="d"
+        Title="Changing" Height="650" Width="400">
+    <DockPanel>
+        <TextBlock TextWrapping="Wrap" DockPanel.Dock="Bottom">*Что бы разделить шаги инструкции или ингредиенты - вводите их с новой строки</TextBlock>
+        <StackPanel DockPanel.Dock="Top" Margin="5">
+            <TextBlock Margin="5">Название:</TextBlock>
+            <TextBox Margin="5" Name="name"></TextBox>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="5">
+            <TextBlock Margin="5">Тип:</TextBlock>
+            <ComboBox Margin="5" Name="type">
+                <!--<TextBlock>Салат</TextBlock>
+                <TextBlock>Десерт</TextBlock>
+                <TextBlock>Выпечка</TextBlock>
+                <TextBlock>Другое</TextBlock>-->
+            </ComboBox>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="5">
+            <TextBlock Margin="5">Кухня:</TextBlock>
+            <ComboBox Margin="5" Name="cuisine">
+                <!--<TextBlock>Итальянская</TextBlock>
+                <TextBlock>Японская</TextBlock>
+                <TextBlock>Европейская</TextBlock>
+                <TextBlock>Другое</TextBlock>-->
+            </ComboBox>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="5">
+            <TextBlock Margin="5">Ингредиенты:</TextBlock>
+            <TextBox Margin="5" Name="ing" AcceptsReturn="True" MinHeight="100"></TextBox>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="5">
+            <TextBlock Margin="5">Инструкция:</TextBlock>
+            <TextBox Margin="5" Name="ins" AcceptsReturn="True" MinHeight="100"></TextBox>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="5">
+            <Button Content="Добавить фото" Margin="5 0 5 0" Click="AddFoto_Click"></Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Ok" MinWidth="50" Margin="5" VerticalAlignment="Center" Click="Button_Click"/>
+            <Button Content="Cancel" MinWidth="50" Margin="5" VerticalAlignment="Center" Click="Button_Click"/>
+        </StackPanel>
+    </DockPanel>
+</Window>

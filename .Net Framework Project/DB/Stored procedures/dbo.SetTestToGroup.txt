@@ -1,0 +1,6 @@
+﻿CREATE PROCEDURE [dbo].SetTestToGroup
+	@TestId bigint, @GroupName nvarchar(100)
+AS
+	insert into TestsGroups([GroupId], [TestId]) values
+	((select top 1 Id from Groups where [Name] = @GroupName), @TestId)
+RETURN 0

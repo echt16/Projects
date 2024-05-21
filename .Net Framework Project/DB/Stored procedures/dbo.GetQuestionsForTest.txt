@@ -1,0 +1,4 @@
+﻿CREATE PROCEDURE [dbo].GetQuestionsForTest @TestId bigint
+AS
+	SELECT q.Id as QuestionId, q.[Text] as QuestionText from Questions as q where q.TestId = @TestId
+RETURN 0

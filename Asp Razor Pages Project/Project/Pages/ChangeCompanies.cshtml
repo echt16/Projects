@@ -1,0 +1,76 @@
+﻿@page
+@using Project.Models
+@model Project.Pages.ChangeCompaniesModel
+@{
+}
+<script>
+    function SendForm(id) 
+    {
+        var isOk = true;
+
+        var n = document.getElementsByName('name')[id].value;
+        if (n == '' || n == null) 
+        {
+            isOk = false;
+        }
+
+        var n = document.getElementsByName('email')[id].value;
+        if (n == '' || n == null) 
+        {
+            isOk = false;
+        }
+
+        if (!isOk)
+        {
+            alert('Wrong info!');
+        }
+        return isOk;
+    }
+</script>
+
+<form class="formGrid" onsubmit="return SendForm(0)" method="post" asp-page-handler="addcomp">
+    <div class="oneRoomTitleText" style="grid-column-start: 1; grid-column-end: 3">Add company:</div>
+    <span style="grid-column: 1">Name:</span><input style="grid-column: 2" name="name" placeholder="Name..." />
+    <span style="grid-column: 1">Email:</span><input style="grid-column: 2" name="email" placeholder="Email..." />
+    <br /><br />
+    <button class="searchButton" style="grid-column-start: 1; grid-column-end: 3">Add company</button>
+</form>
+
+<form class="formGrid" onsubmit="return SendForm(1)" method="post" asp-page-handler="changecomp">
+    <div class="oneRoomTitleText" style="grid-column-start: 1; grid-column-end: 3">Change company:</div>
+    <span style="grid-column: 1">Id:</span><select style="grid-column: 2" name="id">
+        @{
+            foreach (Company c in Model.context.Companies)
+            {
+                <option>@(c.Id + ". " + c.Name)</option>
+            }
+        }
+    </select>
+    <span style="grid-column: 1">Name:</span><input style="grid-column: 2" name="name" placeholder="Name..." />
+    <span style="grid-column: 1">Email:</span><input style="grid-column: 2" name="email" placeholder="Email..." />
+    <br />
+    <button id="b1" class="searchButton" style="grid-column-start: 1; grid-column-end: 3">Change company</button>
+</form>
+
+<form class="formGrid" method="post" asp-page-handler="deletecomp">
+    <div class="oneRoomTitleText" style="grid-column-start: 1; grid-column-end: 3">Delete company:</div>
+    <span style="grid-column: 1">Id:</span><select style="grid-column: 2" name="id">
+        @{
+            foreach (Company c in Model.context.Companies)
+            {
+                <option>@(c.Id + ". " + c.Name)</option>
+            }
+        }
+    </select>
+    <br />
+    <button id="b2" class="searchButton" style="grid-column-start: 1; grid-column-end: 3">Delete company</button>
+</form>
+
+
+<script>
+    if (@(Model.context.Companies.Count()) == 0) 
+    {
+        b1.disabled = true;
+        b2.disabled = true;
+    }
+</script>

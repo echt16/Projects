@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[Groups] (
+    [Id]        INT            IDENTITY (1, 1) NOT NULL,
+    [Name]      NVARCHAR (100) NOT NULL,
+    [TeacherId] INT            NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([TeacherId]) REFERENCES [dbo].[Teachers] ([Id]),
+    CHECK ([Name]<>'')
+);

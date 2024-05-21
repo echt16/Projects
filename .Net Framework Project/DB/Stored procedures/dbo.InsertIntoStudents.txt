@@ -1,0 +1,13 @@
+﻿CREATE PROCEDURE [dbo].InsertIntoStudents
+	@Login nvarchar(75), @Password nvarchar(75), @Name nvarchar(75), @Surname nvarchar(75), @Id int output
+AS
+begin
+insert into LoginsPasswords([Login], [Password]) values (@Login, @Password)
+declare @LoginPasswordId bigint; set @LoginPasswordId = SCOPE_IDENTITY();
+insert into Students([Name], [Surname]) values (@Name, @Surname)
+declare @StudentId bigint; set @StudentId = SCOPE_IDENTITY();
+set @Id = @StudentId
+
+insert into StudentsAccounts([LoginPasswordId], [StudentId]) values(@LoginPasswordId, @StudentId)
+end
+RETURN 0

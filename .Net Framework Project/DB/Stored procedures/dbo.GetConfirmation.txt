@@ -1,0 +1,4 @@
+﻿CREATE PROCEDURE [dbo].GetConfirmation @TeacherId int, @Diploma varbinary(max) output, @Passport varbinary(max) output, @FromWork varbinary(max) output
+AS
+	SELECT @Diploma = c.DiplomaPhoto, @Passport = c.PassportPhoto, @FromWork = c.ConfirmationFromPlaceOfWork from Confirmations as c join Teachers as t on t.ConfirmationId = c.Id where t.Id = @TeacherId
+RETURN 0

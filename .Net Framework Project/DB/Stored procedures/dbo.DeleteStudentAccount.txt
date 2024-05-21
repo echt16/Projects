@@ -1,0 +1,11 @@
+﻿CREATE PROCEDURE [dbo].DeleteStudentAccount @StudentId int
+AS
+begin
+delete from TestsStudents where StudentId = @StudentId
+delete from Results where StudentId = @StudentId
+declare @LoginPasswordId bigint set @LoginPasswordId = (select top 1 LoginPasswordId from StudentsAccounts where StudentId = @StudentId)
+delete from StudentsAccounts where StudentId = @StudentId
+delete from LoginsPasswords where Id = @LoginPasswordId
+delete from Students where Id = @StudentId
+end
+RETURN 0

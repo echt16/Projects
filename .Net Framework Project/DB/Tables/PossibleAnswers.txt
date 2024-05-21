@@ -1,0 +1,9 @@
+CREATE TABLE [dbo].[PossibleAnswers] (
+    [Id]         BIGINT         IDENTITY (1, 1) NOT NULL,
+    [Text]       NVARCHAR (300) NOT NULL,
+    [IsRight]    BIT            DEFAULT ((0)) NOT NULL,
+    [QuestionId] BIGINT         NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([QuestionId]) REFERENCES [dbo].[Questions] ([Id]),
+    CHECK ([Text]<>'')
+);

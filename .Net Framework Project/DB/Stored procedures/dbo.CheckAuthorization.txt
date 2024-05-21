@@ -1,0 +1,36 @@
+﻿CREATE PROCEDURE [dbo].CheckAuthorization
+	@Login nvarchar(75), @Password nvarchar(75), @Type tinyint, @Result bit output, @Id int output
+AS
+begin
+if @Type = 0
+begin
+if (select count(*) from LoginsPasswords as lp join StudentsAccounts as sa on sa.LoginPasswordId = lp.Id where lp.[Login] = @Login and lp.[Password] = @Password and lp.Id = sa.LoginPasswordId) != 0
+begin
+set @Result = 1 
+set @Id = (select top 1 sa.StudentId from LoginsPasswords as lp join StudentsAccounts as sa on sa.LoginPasswordId = lp.Id where lp.[Login] = @Login and lp.[Password] = @Password and lp.Id = sa.LoginPasswordId)
+end
+else
+set @Result = 0
+end
+if @Type = 1
+begin
+if (select count(*) from LoginsPasswords as lp join TeachersAccounts as ta on ta.LoginPasswordId = lp.Id where lp.[Login] = @Login and lp.[Password] = @Password and lp.Id = ta.LoginPasswordId) != 0
+begin
+set @Result = 1 
+set @Id = (select top 1 ta.TeacherId from LoginsPasswords as lp join TeachersAccounts as ta on ta.LoginPasswordId = lp.Id where lp.[Login] = @Login and lp.[Password] = @Password and lp.Id = ta.LoginPasswordId)
+end
+else
+set @Result = 0
+end
+if @Type = 2
+begin
+if (select count(*) from LoginsPasswords as lp join AdministratorsAccounts as aa on aa.LoginPasswordId = lp.Id where lp.[Login] = @Login and lp.[Password] = @Password and lp.Id = aa.LoginPasswordId) != 0
+begin
+set @Result = 1 
+set @Id = (select top 1 aa.AdministratorId from LoginsPasswords as lp join AdministratorsAccounts as aa on aa.LoginPasswordId = lp.Id where lp.[Login] = @Login and lp.[Password] = @Password and lp.Id = aa.LoginPasswordId)
+end
+else
+set @Result = 0
+end
+end
+RETURN 0

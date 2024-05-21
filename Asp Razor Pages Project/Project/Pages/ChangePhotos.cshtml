@@ -1,0 +1,62 @@
+﻿@page
+@using Project.Models
+@model Project.Pages.ChangePhotosModel
+@{
+}
+<script>
+    function SendForm() {
+        var isOk = true;
+
+        var n = document.getElementsByName('number')[0].value;
+        if (n == '' || n == null) {
+            isOk = false;
+        }
+
+        if (!isOk) {
+            alert('Wrong info!');
+        }
+        return isOk;
+    }
+</script>
+
+<form class="formGrid" method="post" asp-page-handler="addphoto" onsubmit="return SendForm()">
+    <div class="oneRoomTitleText" style="grid-column-start: 1; grid-column-end: 3">Add photo:</div>
+
+    <span style="grid-column: 1">Room:</span><select style="grid-column: 2" name="room">
+        @{
+            foreach (QuestRoom q in Model.context.QuestRooms)
+            {
+                    <option>@(q.Id + ". " + q.Name)</option>
+            }
+        }
+    </select>
+    <span style="grid-column: 1">Photo URL:</span><input style="grid-column: 2" name="photo" placeholder="URL..." /><br />
+    <button id="b1" class="searchButton" style="grid-column-start: 1; grid-column-end: 3">Add photo</button>
+</form>
+
+<form class="formGrid" method="post" asp-page-handler="deletephoto">
+    <div class="oneRoomTitleText" style="grid-column-start: 1; grid-column-end: 3">Delete photo:</div>
+
+    <span style="grid-column: 1">Photo:</span><select style="grid-column: 2" name="photo">
+        @{
+            if (Model.context.PhoneNumbers.Count() > 0)
+            {
+                foreach (Photo p in Model.context.Photos.OrderBy(i => i.QuestRoomId))
+                {
+                        <option>@(p.Id + ". QuestRoom: " + p.QuestRoom.Name + "; Photo: " + p.Src)</option>
+                }
+            }
+        }
+    </select><br />
+    <button id="b2" class="searchButton" style="grid-column-start: 1; grid-column-end: 3">Delete photo</button>
+</form>
+
+<script>
+    if (@(Model.context.QuestRooms.Count()) == 0) {
+        b1.disabled = true;
+        b2.disabled = true;
+    }
+    if (@(Model.context.Photos.Count()) == 0) {
+        b2.disabled = true;
+    }
+</script>

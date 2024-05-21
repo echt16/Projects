@@ -1,0 +1,41 @@
+﻿<Window x:Class="Coursework.Authorization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Authorization" Height="450" Width="500"
+        Icon="{StaticResource AppIcon}">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="/background.jpg"/>
+        </Grid.Background>
+        <Image HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Margin="20" Source="/icon.png">
+        </Image>
+        <Label Content="Authorization" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"  Margin="0, 20, 0, 0" FontSize="36" Foreground="#FF2D5D73"/>
+        <DockPanel  HorizontalAlignment="Center"  VerticalAlignment="Center">
+            <DockPanel DockPanel.Dock="Left">
+                <TextBox DockPanel.Dock="Top" Margin="0, 20, 0, 0" x:Name="Login_TextBox" GotFocus="Login_TextBox_GotFocus" LostFocus="Login_TextBox_LostFocus" TextWrapping="Wrap" Text="Enter login..." Width="234" FontFamily="Arial Black" FontWeight="Bold" FontSize="16" Height="23"/>
+                <TextBox DockPanel.Dock="Top" Margin="0, 20, 0, 0" x:Name="Password_TextBox" GotFocus="Password_TextBox_GotFocus" LostFocus="Password_TextBox_LostFocus" TextWrapping="Wrap" Text="Enter password..." Width="234" FontFamily="Arial Black" FontWeight="Bold" FontSize="16" Height="23"/>
+                <Button Margin="0, 20, 0, 0" Content="Sing in" Click="SingIn_Click" VerticalAlignment="Top" Height="35" FontFamily="Arial Black" FontSize="18"  BorderBrush="White" Foreground="White">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#FF17161E" Offset="0"/>
+                            <GradientStop Color="#FF3E5C5C" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Right" Margin="20, 10 , 0 ,0" LastChildFill="False">
+                <Label DockPanel.Dock="Top" FontFamily="Arial Rounded MT Bold" FontSize="20" Foreground="White">I am...</Label>
+                <RadioButton x:Name="Student_RadioButton" DockPanel.Dock="Top" Content="Student" FontFamily="Arial Rounded MT Bold" FontSize="15" Foreground="White"  Margin="0, 10, 0 ,0"/>
+                <RadioButton x:Name="Teacher_RadioButton" DockPanel.Dock="Top" Content="Teacher" FontFamily="Arial Rounded MT Bold" FontSize="15" Foreground="White"  Margin="0, 10, 0 ,0"/>
+                <RadioButton x:Name="Admin_RadioButton" DockPanel.Dock="Top" Content="Administrator" FontFamily="Arial Rounded MT Bold" FontSize="15" Foreground="White"  Margin="0, 10, 0 ,0"/>
+            </DockPanel>
+        </DockPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0, 0, 0, 20">
+            <Label Content="Do not have an account yet?" FontFamily="Arial Rounded MT Bold" FontSize="18"/>
+            <Label Content="Registration" HorizontalAlignment="Center" MouseLeftButtonDown="Label_MouseLeftButtonDown" FontFamily="Arial Rounded MT Bold" FontSize="18" Foreground="#FF2D5D73"/>
+        </StackPanel>
+    </Grid>
+</Window>

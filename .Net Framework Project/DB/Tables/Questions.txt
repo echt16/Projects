@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[Questions] (
+    [Id]     BIGINT         IDENTITY (1, 1) NOT NULL,
+    [Text]   NVARCHAR (300) NOT NULL,
+    [TestId] BIGINT         NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([TestId]) REFERENCES [dbo].[Tests] ([Id]),
+    CHECK ([Text]<>'')
+);

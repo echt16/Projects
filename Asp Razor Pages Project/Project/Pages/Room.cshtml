@@ -1,0 +1,50 @@
+﻿@page
+@using Project.Models
+@model Project.Pages.RoomModel
+@{
+    if (Request.Query.Count(i => i.Key == "handler") > 0)
+    {
+        QuestRoom q = Model.context.QuestRooms.First(i => i.Id == int.Parse(Request.Query["handler"]));
+        <div class="oneRoomTitle" style="background-image: url(@q.LogoSrc)">@q.Name</div>
+        <div class="oneRoomGrid">
+        <div class="oneRoomImgs">
+            <div class="oneRoomTitleText">Images:</div>
+            <div class="oneRoomImages">
+                @{
+                    foreach (Photo p in Model.context.Photos.Where(i => i.QuestRoomId == q.Id))
+                    {
+                        <img src="@p.Src" />
+                    }
+                }
+            </div>
+        </div>
+            <div class="oneRoomDesc">
+                <div class="oneRoomTitleText">Description:</div>
+                <div>
+                    @q.Description
+                </div>
+            </div>
+            <div class="oneRoomInfo">
+                <div class="oneRoomTitleText">Info:</div>
+                <div>Players: @q.MinPlayer-@q.MaxPlayer</div>
+                <div>Rating: @q.Rating</div>
+                <div>Difficulty: @q.DifficultyLevel</div>
+                <div>Fear level: @q.FearLevel</div>
+                <div>Time: @q.TravelTime</div>
+                <div>Adress: @q.Address</div>
+            </div>
+        </div>
+        <br /><br /><br />
+        <div class="oneRoomAboutDiv">Our company: @Model.context.Companies.First(i => i.Id == q.CompanyId).Name</div>
+        <div class="oneRoomAboutDiv">Our email: @Model.context.Companies.First(i => i.Id == q.CompanyId).Email</div>
+        <div class="oneRoomAboutDiv">
+            Our numbers:
+            @{
+                foreach (PhoneNumber p in Model.context.PhoneNumbers.Where(i => i.CompanyId == q.CompanyId))
+                {
+                    <span class="oneRoomAboutDiv">@p.Number;</span>
+                }
+            }
+        </div>
+    }
+}

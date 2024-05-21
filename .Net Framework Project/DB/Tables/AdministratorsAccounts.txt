@@ -1,0 +1,9 @@
+CREATE TABLE [dbo].[AdministratorsAccounts] (
+    [Id]              BIGINT IDENTITY (1, 1) NOT NULL,
+    [AdministratorId] INT    NOT NULL,
+    [LoginPasswordId] BIGINT NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    UNIQUE NONCLUSTERED ([AdministratorId] ASC),
+    FOREIGN KEY ([AdministratorId]) REFERENCES [dbo].[Administrators] ([Id]),
+    FOREIGN KEY ([LoginPasswordId]) REFERENCES [dbo].[LoginsPasswords] ([Id])
+);

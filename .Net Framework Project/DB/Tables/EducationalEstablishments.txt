@@ -1,0 +1,9 @@
+CREATE TABLE [dbo].[EducationalEstablishments] (
+    [Id]     INT           IDENTITY (1, 1) NOT NULL,
+    [Name]   NVARCHAR (75) NOT NULL,
+    [Phone]  NVARCHAR (20) NULL,
+    [CityId] INT           DEFAULT ((1)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([CityId]) REFERENCES [dbo].[Cities] ([Id]),
+    CHECK ([Name] <> '')
+);

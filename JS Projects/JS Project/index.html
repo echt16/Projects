@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav>
+        <p id="logo">FilmSearch</p>
+        <form id="main" onsubmit="return false">
+            <input type="text" id="filmSearch" placeholder="Search...">
+            <select id="typeOfFilm">
+                <option value="">Movie</option>
+                <option value="">Series</option>
+                <option value="">Episode</option>
+            </select>
+            <button id="searchButton">
+                <img id="searchImg" src="https://dentalinfo.com.ua/images/icon-search.png" alt="">
+            </button>
+        </form>
+    </nav>
+    <div id="noFound">
+
+    </div>
+    <div id="films">
+
+    </div>
+    <div class="center">
+
+        <div id="pagination">
+
+        </div>
+    </div>
+    <div id="forModal" onclick="hiddenMoreInfo()">
+
+    </div>
+    <script src="script.js">
+    </script>
+</body>
+
+</html>

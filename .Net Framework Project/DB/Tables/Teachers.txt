@@ -1,0 +1,14 @@
+CREATE TABLE [dbo].[Teachers] (
+    [Id]                         INT           IDENTITY (1, 1) NOT NULL,
+    [Name]                       NVARCHAR (75) NOT NULL,
+    [Surname]                    NVARCHAR (75) NOT NULL,
+    [IsConfirmed]                BIT           DEFAULT ((0)) NOT NULL,
+    [EducationalEstablishmentId] INT           NULL,
+    [ConfirmationId]             INT           NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    UNIQUE NONCLUSTERED ([ConfirmationId] ASC),
+    FOREIGN KEY ([ConfirmationId]) REFERENCES [dbo].[Confirmations] ([Id]),
+    FOREIGN KEY ([EducationalEstablishmentId]) REFERENCES [dbo].[EducationalEstablishments] ([Id]),
+    CHECK ([Name]<>''),
+    CHECK ([Surname]<>'')
+);

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h2>LIBRARY</h2>
+            <div id="choosing">
+                <div>
+                    Books
+                </div>
+                <div>
+                    Visitors
+                </div>
+                <div>
+                    Cards
+                </div>
+                <div>
+                    Statistics
+                </div>
+            </div>
+        </header>
+        <main>
+            <section id="booksContainer">
+                <div class="head">
+                    <div>ALL BOOKS:</div>
+                    <button onclick="addBook(event)">New book</button>
+                </div>
+                <div class="additional">
+                    <div>
+                        <span>Sort by:</span>
+                        <select id="sortBook">
+                            <option value="ID">ID</option>
+                            <option value="Name">Name</option>
+                            <option value="Author">Author</option>
+                            <option value="PublishYear">Publish Year</option>
+                            <option value="Publisher">Publisher</option>
+                            <option value="Pages">Pages</option>
+                            <option value="Count">Count</option>
+                        </select>
+                        <button onclick="sortBook(event)">Sort</button>
+                    </div>
+                    <div>
+                        <span>Search:</span>
+                        <input type="text" id="searchingBook">
+                        <button onclick="searchBook(event)">Search</button>
+                    </div>
+                </div>
+                <div class="table">
+                    <table id="bookTable">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Publish Year</th>
+                            <th>Publisher</th>
+                            <th>Pages</th>
+                            <th>Count</th>
+                            <th>Edit</th>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+            <section id="visitorsContainer">
+                <div class="head">
+                    <div>ALL VISITORS:</div>
+                    <button onclick="addVisitor(event)">New visitor</button>
+                </div>
+                <div class="additional">
+                    <div>
+                        <span>Sort by:</span>
+                        <select id="sortVisitor">
+                            <option value="ID">ID</option>
+                            <option value="Name">Name</option>
+                            <option value="Phone">Phone</option>
+                        </select>
+                        <button onclick="sortVisitor(event)">Sort</button>
+                    </div>
+                    <div>
+                        <span>Search:</span>
+                        <input type="text" id="searchingVisitor">
+                        <button onclick="searchVisitor(event)">Search</button>
+                    </div>
+                </div>
+                <div class="table">
+                    <table id="visitorTable">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Edit</th>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+            <section id="cardsContainer">
+                <div class="head">
+                    <div>ALL CARDS:</div>
+                    <button onclick="addCard(event)">New card</button>
+                </div>
+                <div class="additional">
+                    <div>
+                        <span>Sort by:</span>
+                        <select id="sortCard">
+                            <option value="ID">ID</option>
+                            <option value="Visitor">Visitor</option>
+                            <option value="Book">Book</option>
+                            <option value="BorrowDate">Borrow Date</option>
+                            <option value="ReturnDate">Return Date</option>
+                        </select>
+                        <button onclick="sortCard(event)">Sort</button>
+                    </div>
+                    <div>
+                        <span>Search:</span>
+                        <input type="text" id="searchingCard">
+                        <button onclick="searchCard(event)">Search</button>
+                    </div>
+                </div>
+                <div class="table">
+                    <table id="cardTable">
+                        <tr>
+                            <th>ID</th>
+                            <th>Visitor</th>
+                            <th>Book</th>
+                            <th>Borrow Date</th>
+                            <th>Return Date</th>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+            <section id="statisticsContainer">
+                <div class="head">
+                    <div>
+                        Most popular book
+                    </div>
+                    <div>
+                        TOP 5
+                    </div>
+                </div>
+                <div class="table">
+                    <table id="statistic1Table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Publish Date</th>
+                            <th>Publisher</th>
+                            <th>Pages</th>
+                            <th>Count</th>
+                            <th>Edit</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="head">
+                    <div>
+                        Most activ visitors
+                    </div>
+                    <div>
+                        TOP 5
+                    </div>
+                </div>
+                <div class="table">
+                    <table id="statistic2Table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Edit</th>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+        </main>
+        <div class="modalWindow" id="bookModal">
+            <form class="modal-content" onsubmit="saveBook(event)">
+                <div class="close">&times;</div>
+                <h2>Новая книга:</h2>
+                <span>Name:</span>
+                <input type="text" id="bookName" placeholder="Введите наименование..." required>
+                <span>Author:</span>
+                <input type="text" id="bookAuthor" placeholder="Введите имя автора..." required>
+                <span>Publish year:</span>
+                <input type="text" id="bookYear" placeholder="Введите год издательства..." required>
+                <span>Publisher:</span>
+                <input type="text" id="bookPublisher" placeholder="Введите наименование издательства..." required>
+                <span>Pages:</span>
+                <input type="text" id="bookPages" placeholder="Введите количество страниц..." required>
+                <span>Count:</span>
+                <input type="text" id="bookCount" placeholder="Введите количество книг в асортименте..." required>
+                <button>Сохранить</button>
+            </form>
+        </div>
+        <div class="modalWindow" id="bookEdit">
+            <form class="modal-content" onsubmit="saveEditBook(event)">
+                <div class="close">&times;</div>
+                <h2>Редактировать книгу:</h2>
+                <span>Name:</span>
+                <input type="text" id="bookNameEdit" placeholder="Введите наименование..." required>
+                <span>Author:</span>
+                <input type="text" id="bookAuthorEdit" placeholder="Введите имя автора..." required>
+                <span>Publish year:</span>
+                <input type="text" id="bookYearEdit" placeholder="Введите год издательства..." required>
+                <span>Publisher:</span>
+                <input type="text" id="bookPublisherEdit" placeholder="Введите наименование издательства..." required>
+                <span>Pages:</span>
+                <input type="text" id="bookPagesEdit" placeholder="Введите количество страниц..." required>
+                <span>Count:</span>
+                <input type="text" id="bookCountEdit" placeholder="Введите количество книг в асортименте..." required>
+                <button>Сохранить</button>
+            </form>
+        </div>
+        <div class="modalWindow" id="visitorModal">
+            <form class="modal-content" onsubmit="saveVisitor(event)">
+                <div class="close">&times;</div>
+                <h2>Новый клиент:</h2>
+                <span>Name:</span>
+                <input type="text" id="visitorName" placeholder="Введите имя клиента..." required>
+                <span>Phone:</span>
+                <input type="text" id="visitorPhone" placeholder="Введите номер телефона..." required>
+                <button>Сохранить</button>
+            </form>
+        </div>
+        <div class="modalWindow" id="visitorEdit">
+            <form class="modal-content" onsubmit="saveEditVisitor(event)">
+                <div class="close">&times;</div>
+                <h2>Редактировать клиента:</h2>
+                <span>Name:</span>
+                <input type="text" id="visitorNameEdit" placeholder="Введите имя клиента..." required>
+                <span>Phone:</span>
+                <input type="text" id="visitorPhoneEdit" placeholder="Введите номер телефона..." required>
+                <button>Сохранить</button>
+            </form>
+        </div>
+        <div class="modalWindow" id="cardModal">
+            <form class="modal-content" onsubmit="saveCard(event)">
+                <div class="close">&times;</div>
+                <h2>Новая карта:</h2>
+                <span>Visitor</span>
+                <select name="visitors" id="cardVisitor" required></select>
+                <span>Book</span>
+                <select name="visitors" id="cardBook" required></select>
+                <span>Borrow Date</span>
+                <input type="date" id="cardBorrowDate" required>
+                <button>Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

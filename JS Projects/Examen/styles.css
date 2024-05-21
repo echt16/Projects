@@ -1,0 +1,172 @@
+/* #404040 gray 
+#03938f blue
+#f6f6f6 bgc
+*/
+
+body{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.container{
+    width: 100%;
+    background-color: #f6f6f6;
+    min-height: 100vh;
+}
+
+header h2{
+    color: #03938f;
+    margin: 0;
+    padding: 30px 30px;
+}
+
+header #choosing{
+    display: flex;
+    background-color: #404040;
+    padding: 0 30px;
+    color: white;
+}
+
+header #choosing div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    border-left: 1px solid #f6f6f635;
+    padding: 10px 0;
+}
+
+header #choosing div:last-child{
+    border-right: 1px solid #f6f6f635;
+}
+
+header #choosing div:hover{
+    border-top: 3px solid #03938f;
+    border-bottom: 3px solid #03938f;
+    cursor: pointer;
+}
+
+main{
+    padding: 0 30px;
+}
+
+.head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);;
+}
+
+.head div{
+    color: #03938f;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.head button{
+    width: 150px;
+}
+
+.additional{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+
+.additional div select, .additional div input{
+    width: 150px;
+}
+
+.additional div button{
+    width: 60px;
+}
+
+.table table{
+    border-collapse: collapse;
+}
+
+.table table,.table table div tr{
+    width: 100%;
+}
+
+td, th{
+    border: 1px solid black;
+}
+
+#visitorsContainer, #cardsContainer, #statisticsContainer{
+    display: none;
+}
+
+#choosing div:first-child{
+    border-left: 3px solid #03938f;
+    border-right: 3px solid #03938f;
+}
+
+tr{
+    width: 100%;
+}
+
+td{
+    height: 30px;
+    text-align: center;
+}
+
+td img{
+    height: 80%;
+    width: auto;
+}
+
+/*-------------*/
+
+.modalWindow {
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content input[type="text"]{
+    margin-bottom: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
