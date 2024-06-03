@@ -32,6 +32,7 @@ namespace cw
         {
             comboBox1.Visible = radioButton1.Checked;
             comboBox1.Enabled = radioButton1.Checked;
+
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
